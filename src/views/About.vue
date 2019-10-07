@@ -1,19 +1,22 @@
 <template>
   <div class="about">
-    <Content2></Content2>
-    <Content3></Content3>
+    <div style="margin-top:10px">
+      <router-link to="/about/cont2" tag="button" replace>cont2</router-link>
+      <router-link to="/about/cont3" tag="button" replace>cont3</router-link>
+    </div>
+    <div style="margin-top:10px">{{ msg }}</div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Content2 from '@/components/Content2.vue'
-import Content3 from '@/components/Content3.vue'
 
 export default {
   name: 'about',
-  components: {
-    Content2,
-    Content3
-  }
+  data() {
+    return {
+      msg: 'about page'
+    }
+  },
 }
 </script>
