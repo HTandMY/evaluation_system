@@ -11,7 +11,12 @@ export default {
         return {
             msg : 'this is content3'
         }
-    }
+    },
+    //路由跳转后，组件执行方法
+    // beforeRouteEnter(to, from, next){
+    //   console.log("loaded content3");
+    //   next();
+    // }
 }
 </script>
 

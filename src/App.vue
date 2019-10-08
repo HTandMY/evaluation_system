@@ -4,17 +4,23 @@
       <!-- tag：想要渲染成的标签 replace：左上返回禁止 active-class:点击后的class -->
       <router-link to="/home" tag="button" replace>Home</router-link>
       <router-link to="/about" tag="button" replace>About</router-link>
-      <router-link v-bind:to="'/User/' + userId" tag="button" replace>User</router-link>
+      <router-link v-bind:to="'/user/' + userId" tag="button" replace>User</router-link>
+      <router-link v-bind:to="{path: '/news' , query:{name: 'aaa', age:123}}" tag="button" replace>News</router-link>
       <br/>
       <!-- <button @click="clicked('home')">Home</button> -->
       <!-- <button @click="clicked('about')">About</button> -->
     </div>
     <router-view/>
+    <tabBar></tabBar>
   </div>
 </template>
 
 <script>
+import tabBar from '@/components/tabbar/tabbar.vue'
 export default {
+  components:{
+    tabBar
+  },
   data() {
     return {
       userId : "123456"
@@ -22,20 +28,22 @@ export default {
   },
   methods : {
     //第二个点击路由跳转
-    clicked(name){
-      this.$router.replace("/" + name)
-    }
+    // clicked(name){
+    //   this.$router.replace("/" + name)
+    // }
   }
 }
 </script>
 
 <style>
+body{
+  margin: 0;
+  padding: 0;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 #nav button {
   width: 100px;
