@@ -64,7 +64,7 @@ const router = new Router({
   //改变网页地址显示方法，不再显示#号
   mode: 'history',
   //点击后的class
-  linkActiveClass: 'active',
+  linkActiveClass: 'actived',
 })
 
 // 页面跳转时想要执行函数的方法

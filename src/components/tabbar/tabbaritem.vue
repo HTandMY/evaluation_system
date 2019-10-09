@@ -1,13 +1,30 @@
 <template>
-  <div class="tab-bar-item">
-      <slot name="icon"></slot>
-      <slot name="text"></slot>
-  </div>
+    <router-link tag="div" :to="{path: path , query: queryName}" replace class="tab-bar-item">
+        <div v-if="isActive"><slot name="item-icon"></slot></div>
+        <div v-else><slot name="item-icon-active"></slot></div>
+        <div :style="activedStyle"><slot name="item-text"></slot></div>
+    </router-link>
 </template>
 
 <script>
 export default {
-    name: 'tabbaritem'
+    name: 'tabbaritem',
+    props:['path' , 'query' , 'activedColor'],
+    data() {
+        return {
+            queryName: this.query
+        }
+    },
+    methods: {
+    },
+    computed: {
+        isActive(){
+            return this.$route.path.indexOf(this.path)
+        },
+        activedStyle(){
+            return !this.isActive ? {color : this.activedColor} : {}
+        }
+    },
 }
 </script>
 
@@ -19,10 +36,13 @@ export default {
         font-size: 14px;
     }
     .tab-bar-item img {
-        height: 50%;
-        margin-top: 5px;
+        height: 23px;
+        margin-top: 6px;
         /* 去掉图片下的3个像素 */
         vertical-align: middle;
         margin-bottom: 2px;
     }
+    /* .actived {
+        color: rgb(255, 150, 150)
+    } */
 </style>

@@ -1,7 +1,8 @@
 <template>
-    <div>News Page
-        <div>name : {{ $route.query.name }}</div>
-        <div>age : {{ $route.query.age }}</div>
+    <div>
+        <h2>News Page</h2>
+        <p>name : {{ $route.query.name }}</p>
+        <p>age : {{ $route.query.age }}</p>
     </div>
 
 </template>
