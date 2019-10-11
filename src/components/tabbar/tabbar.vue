@@ -47,5 +47,6 @@ export default {
         right: 0;
         bottom: 0;
         height: 49px;
+        box-shadow: 0 0 4px rgba(0,0,0,0.2)
     }
 </style>

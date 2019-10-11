@@ -33,7 +33,7 @@ export default {
         flex: 1;
         color: #2c3e50;
         text-align: center;
-        font-size: 14px;
+        font-size: 12px;
     }
     .tab-bar-item img {
         height: 23px;
@@ -42,7 +42,18 @@ export default {
         vertical-align: middle;
         margin-bottom: 2px;
     }
-    /* .actived {
-        color: rgb(255, 150, 150)
-    } */
+    #tab-bar .actived {
+        animation: zoom .2s
+    }
+    @keyframes zoom {
+        0% {
+            transform : scale(1)
+        }
+        50% {
+            transform : scale(0.8)
+        }
+        100% {
+            transform : scale(1)
+        }
+    }
 </style>
