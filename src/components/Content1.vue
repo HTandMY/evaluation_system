@@ -8,6 +8,7 @@
     <input type="number" v-model="number" id="numInput"><br/>
     <button @click="$store.commit('add_num' , number)">+{{ number }}</button>
     <button @click="$store.commit('min_num' , number)">-{{ number }}</button>
+    <button @click="add_1s">1s after +1</button>
   </div>
 </template>
 
@@ -19,7 +20,13 @@ export default {
             msg: 'helloworld',
             number: 5
         }
-    }
+    },
+    methods: {
+      add_1s(){
+        //then为store中Promise中resolve的回调
+        this.$store.dispatch('upDateNum' , '1s after number +1').then((res) => {console.log(res)})
+      }
+    },
 }
 </script>
 

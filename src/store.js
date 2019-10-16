@@ -1,44 +1,28 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import state from './store/state'
+import mutations from './store/mutations'
+import actions from './store/actions'
+import getters from './store/getters'
+
+import moduleA from './store/modules/moduleA'
+import moduleB from './store/modules/moduleB'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   //状态
-  state: {
-    counter: 100,
-    students: [
-      {id: 101, name: "aaa", age: 15},
-      {id: 102, name: "bbb", age: 18},
-      {id: 103, name: "ccc", age: 22},
-    ]
-  },
+  state: state,
   //同步操作方法
-  mutations: {
-    add(state){
-      state.counter++
-    },
-    min(state){
-      state.counter--
-    },
-    add_num(state , num){
-      state.counter += Number(num)
-    },
-    min_num(state , num){
-      state.counter -= Number(num)
-    },
-  },
+  mutations: mutations,
   //异步操作方法
-  actions: {
-
-  },
+  actions: actions,
   //返回派生状态方法
-  getters: {
-    getAge(state){
-      return state.students.filter((s) => {return s.age >= 18})
-    },
-    getAgeLength(state , getters){
-      return getters.getAge.length
-    }
+  getters: getters,
+  modules: {
+    a: moduleA,
+    b: moduleB
   }
-})
+});
+
