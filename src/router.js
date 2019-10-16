@@ -2,11 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // 一次性加载方法
+// ワンタイムロード方法
 // import Home from './views/Home.vue'
 // import About from './views/About.vue'
 // import User from './views/User.vue'
 
 //使用时才加载方法
+//使用する時ロード方法
 const Home = () => import('./views/Home.vue')
 const About = () => import('./views/About.vue')
 const User = () => import('./views/User.vue')
@@ -62,12 +64,15 @@ const router = new Router({
     }
   ],
   //改变网页地址显示方法，不再显示#号
+  //URL変更すると、＃を表示させない
   mode: 'history',
   //点击后的class
+  //クリックされる時表示するclass
   linkActiveClass: 'actived',
 })
 
 // 页面跳转时想要执行函数的方法
+//　ページ変わる時実行する関数
 // router.beforeEach((to , from , next) => {
 //   document.title = to.matched[0].meta.title;
 //   next()
