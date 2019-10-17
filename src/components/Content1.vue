@@ -2,6 +2,7 @@
   <div class="hello">
     <h1>This is a {{ msg }} page</h1>
     <h1>This is a {{ msg }} page</h1>
+    <h1>This is a {{ msg }} page</h1>
     <p>num : {{ $store.state.counter }}</p>
     <button @click="$store.commit('add')">+1</button>
     <button @click="$store.commit('min')">-1</button>
