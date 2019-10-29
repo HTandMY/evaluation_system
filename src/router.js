@@ -65,7 +65,7 @@ const router = new Router({
   ],
   //改变网页地址显示方法，不再显示#号
   //URL変更すると、＃を表示させない
-  mode: 'history',
+  // mode: 'history',
   //点击后的class
   //クリックされる時表示するclass
   linkActiveClass: 'actived',
