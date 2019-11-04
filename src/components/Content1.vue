@@ -6,6 +6,8 @@
     <p>num : {{ $store.state.counter }}</p>
     <button @click="$store.commit('add')">+1</button>
     <button @click="$store.commit('min')">-1</button>
+    <button @click="$store.commit('save')">save</button>
+    <button @click="delDate()">DEL</button>
     <br/>
     <input type="number" v-model="number" id="numInput"><br/>
     <button @click="$store.commit('add_num' , number)">+{{ number }}</button>
@@ -23,10 +25,18 @@ export default {
             number: 5
         }
     },
+    mounted() {
+      if(localStorage.test){
+        this.$store.commit('readLocal')
+      }
+    },
     methods: {
       add_1s(){
         //then为store中Promise中resolve的回调
         this.$store.dispatch('upDateNum' , '1s after number +1').then((res) => {console.log(res)})
+      },
+      delDate(){
+        localStorage.removeItem('test');
       }
     },
 }

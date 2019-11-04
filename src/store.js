@@ -11,6 +11,7 @@ import moduleB from './store/modules/moduleB'
 
 Vue.use(Vuex)
 
+
 export default new Vuex.Store({
   //状态
   state: state,

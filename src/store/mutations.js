@@ -10,5 +10,11 @@ export default {
     },
     min_num(state , num){
         state.counter -= Number(num)
+    },
+    save(state){
+        localStorage.setItem("test", state.counter);
+    },
+    readLocal(state){
+        state.counter = localStorage.test
     }
 }
