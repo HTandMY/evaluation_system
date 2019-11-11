@@ -1,5 +1,5 @@
 export default {
-    upDateNum(context , text){
+    upDataNum(context , text){
         return new Promise((resolve , reject) => {
             setTimeout(() => {
             //必须通过这个调用commit
