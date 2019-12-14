@@ -9,12 +9,11 @@ import Router from 'vue-router'
 
 //使用时才加载方法
 //使用する時ロード方法
-const Home = () => import('./views/Home.vue')
-const About = () => import('./views/About.vue')
-const User = () => import('./views/User.vue')
-const News = () => import('./views/News.vue')
-const Cont2 = () => import('./components/Content2.vue')
-const Cont3 = () => import('./components/Content3.vue')
+const Home = () => import('./views/Home.vue');
+const Visitor = () => import('./views/Visitor.vue');
+const Student = () => import('./views/Student.vue');
+const Grade_2 = () => import('./components/Grade_2.vue');
+const Grade_1 = () => import('./components/Grade_1.vue');
 
 Vue.use(Router)
 
@@ -22,45 +21,33 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: '/home'
-    },
-    {
-      path: '/home',
       component: Home,
       meta: {title: '評価システム | HOME'}
+      // redirect: '/home'
     },
     {
-      path: '/about',
-      component: About,
+      path: '/visitor',
+      component : Visitor,
       children: [
         {
           path: '/',
-          redirect: 'cont2'
+          redirect: 'grade2'
         },
         {
-          path: 'cont2',
-          component: Cont2
+          path: 'grade2',
+          component: Grade_2
         },
         {
-          path: 'cont3',
-          component: Cont3
+          path: 'grade1',
+          component: Grade_1
         }
       ],
-      meta: {title: '評価システム | ABOUT'}
+      meta : {title: '評価システム | 来場者'}
     },
     {
-      path: '/user/:userid',
-      component: User,
-      meta: {title: '評価システム | USER'},
-      beforeEnter: (to, from, next) => {
-        console.log("enter user page")
-        next();
-      }
-    },
-    {
-      path: '/news',
-      component: News,
-      meta: {title: '評価システム | NEWS'}
+      path: '/student',
+      component : Student,
+      meta : {title: '評価システム | 学生'}
     }
   ],
   //改变网页地址显示方法，不再显示#号

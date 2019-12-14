@@ -1,16 +1,17 @@
 <template>
   <div class="home">
-    <Content1></Content1>
+    <div><router-link tag="button" to="/visitor" class="button">来場者入り口</router-link></div>
+    <div><router-link tag="button" to="/student" class="button">ウェブデザイン科の学生入口</router-link></div>
   </div>
 </template>
 
 <script>
-import Content1 from '@/components/Content1.vue'
+
 
 export default {
   name: 'home',
   components: {
-    Content1
+    
   }
 }
 </script>
