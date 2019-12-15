@@ -1,19 +1,20 @@
 <template>
   <div>
         <div><router-link tag="button" to="/" class="button">BACK</router-link></div>
-        <WorksList v-if="$store.state.visitorMessage && $store.state.visitorMessage.occupation == '一般の方' || $store.state.visitorMessage.job"/>
-        <div v-else><VisitorSignin/></div>
+        <div>
+            <router-link tag="button" :to="{path : '/visitor/grade2'}">2年生</router-link>
+            <router-link tag="button" :to="{path : '/visitor/grade1'}">1年生</router-link>
+            <router-view></router-view>
+        </div>
   </div>
 </template>
 
 <script>
-import VisitorSignin from '@/components/VisitorSignin.vue'
-import WorksList from '@/components/WorksList.vue'
+
 export default {
     name: 'visitor',
     components : {
-        VisitorSignin,
-        WorksList
+        
     },
     data() {
         return {
@@ -21,12 +22,22 @@ export default {
         }
     },
     methods: {
-        
+        changeURL(){
+             this.$router.push({ path: '/visitorsignin' })
+        },
+        readLocalStorage(){
+            if(localStorage.visitor == undefined){
+                this.changeURL();
+            }else{
+                this.$store.commit('readVisitorMessage');
+                if(this.$store.state.visitorMessage.occupation == "企業の方" && this.$store.state.visitorMessage.job == undefined){
+                    this.changeURL();
+                }
+            }
+        }
     },
     mounted() {
-        if(localStorage.visitor){
-            this.$store.commit('readVisitorMessage')
-        }
+        this.readLocalStorage();
     },
 }
 </script>

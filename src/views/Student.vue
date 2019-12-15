@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import StudentSignin from '@/components/StudentSignin.vue'
+import StudentSignin from './StudentSignin.vue'
 export default {
     name: 'student',
 }

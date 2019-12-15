@@ -35,14 +35,24 @@ export default {
                 }
                 localStorage.setItem("visitor" , JSON.stringify(message));
             }
-            this.checkMessage();
+            this.$store.commit('readVisitorMessage');
+            this.readLocalStorage();
         },
-        checkMessage(){
+        changeURL(){
+            this.$router.push({ path: '/visitor' })
+        },
+        readLocalStorage(){
             if(localStorage.visitor){
-                this.$store.commit('readVisitorMessage')
+                this.$store.commit('readVisitorMessage');
+                if(this.$store.state.visitorMessage.occupation == "一般の方" || this.$store.state.visitorMessage.job != undefined){
+                    this.changeURL();
+                }
             }
         }
-    }
+    },
+    mounted() {
+        this.readLocalStorage();
+    },
 }
 </script>
 

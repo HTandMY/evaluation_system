@@ -11,7 +11,9 @@ import Router from 'vue-router'
 //使用する時ロード方法
 const Home = () => import('./views/Home.vue');
 const Visitor = () => import('./views/Visitor.vue');
+const VisitorSignin = () => import('./views/VisitorSignin.vue');
 const Student = () => import('./views/Student.vue');
+const StudentSignin = () => import('./views/StudentSignin.vue');
 const Grade_2 = () => import('./components/Grade_2.vue');
 const Grade_1 = () => import('./components/Grade_1.vue');
 
@@ -42,13 +44,23 @@ const router = new Router({
           component: Grade_1
         }
       ],
-      meta : {title: '評価システム | 来場者'}
+      meta : {title: '評価システム | 評価ページ'}
+    },
+    {
+      path: '/visitorsignin',
+      component : VisitorSignin,
+      meta : {title: '評価システム | 来場者登録'}
     },
     {
       path: '/student',
       component : Student,
-      meta : {title: '評価システム | 学生'}
-    }
+      meta : {title: '評価システム | 学生ページ'}
+    },
+    {
+      path: '/studentsignin',
+      component : StudentSignin,
+      meta : {title: '評価システム | 学生ログイン'}
+    },
   ],
   //改变网页地址显示方法，不再显示#号
   //URL変更すると、＃を表示させない
