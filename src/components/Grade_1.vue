@@ -4,7 +4,7 @@
           {{ item.groupName }}
           <ul>
               <li v-for="item_1 in studentData.groups.grade_1[index].members" v-bind:key="item_1.id">
-                  {{ item_1.id }} - {{ studentData.students[item_1.id].name }}
+                  {{ studentData.students[item_1.id].name }}
               </li>
           </ul>
       </div>

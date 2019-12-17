@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <button v-on:click="fullscreen">fullscreen</button>
+
+
     <div id="app_content">
       <router-view/>
     </div>
@@ -18,7 +21,9 @@ export default {
     }
   },
   methods : {
-
+    fullscreen() {
+      document.body.requestFullscreen();
+    }
   }
 }
 </script>
@@ -27,6 +32,18 @@ export default {
 body{
   margin: 0;
   padding: 0;
+  
+}
+#app {
+  background-image: url('assets/bg_UI@2x.png') ;
+  background-position: 50% 50%;
+  height: 100%;
+  min-height: 100vh;
+  width: 100vw;
+}
+#app:fullscreen {
+  background-image: url('assets/bg_UI@2x.png') ;
+  background-position: 50% 50%;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -38,8 +55,9 @@ body{
   height: 30px;
   margin: 0 5px;
 }
-#nav .active {
+ #nav .active {
   color : red;
   font-weight: bold;
 } */
+
 </style>

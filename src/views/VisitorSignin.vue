@@ -57,5 +57,7 @@ export default {
 </script>
 
 <style>
-
+.buttonSize{
+    background-color: #fff;
+}
 </style>
