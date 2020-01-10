@@ -2,8 +2,8 @@
   <div>
         <div><router-link tag="button" to="/" class="button">BACK</router-link></div>
         <div>
-            <router-link class="button grade2" tag="button" :to="{path : '/visitor/grade2'}">2年生</router-link>
-            <router-link class="button grade1" tag="button" :to="{path : '/visitor/grade1'}">1年生</router-link>
+            <router-link class="button grade2" tag="button" :to="{path : '/visitor/grade2'}"></router-link>
+            <router-link class="button grade1" tag="button" :to="{path : '/visitor/grade1'}"></router-link>
             <router-view></router-view>
         </div>
   </div>
