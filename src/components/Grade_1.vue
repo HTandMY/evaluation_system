@@ -5,26 +5,17 @@
             <div class="grid-container">
             
                 <ul class="project-header-container">
-                <li class="project-header" v-for="(item, index) in studentData.groups.grade_1" v-bind:key="item[index]">
-                    <div>{{ item[index] }}</div>
+                <li class="project-header" v-for="(item, key) in studentData.groups.grade_1" v-bind:key="key">
+                    <div>{{key}}</div>
                     <ul class="project-info-container">
-                        <li class="project-info" v-for="(item_1, index_1) in item[index]" v-bind:key="index_1.id" >
-                            <div>作品名</div>
-                            
-                            <div>学生名前</div>
-                            <div>{{ item[index].name }}</div>
+                        <li class="project-info" v-for="(item_1, index_1) in item" v-bind:key="index_1.id" >
+                            <div>
+                                <span class="project-info-div" style="width: 20%;">{{ item_1.boothNumber }}</span>
+                                <span class="project-info-div" style="width: 80%;">{{ item_1.workTitle }}</span>
+                                <img class="worksimg" src="@/assets/1styearstudents@2x.png" alt="">
+                                <span>{{item_1.name}}</span>
+                            </div> 
                         </li>
-                        
-                        <!-- <li class="project-info" v-for="(item_1 , index_1) in item.members" v-bind:key="index_1.id ">
-                            {{ studentData.students[item_1.id].boothNumber }}
-                            {{studentData.students[item_1.id].workTitle}}
-                            <ul class="student-info-container">
-                                <div class="student-info">
-                                    <div><img class="worksimg" src="@/assets/1styearstudents@2x.png" alt=""></div>
-                                    {{ studentData.students[item_1.id].name }} 
-                                </div>
-                            </ul>
-                        </li> -->
                     </ul>
                 </li>
             </ul>

@@ -3,6 +3,7 @@
         <div>
             <h1 class="page-title">卒業制作</h1>
             <div class="grid-container">
+                
             <ul class="project-info-container">
                 <li class="project-info" v-for="(item , index) in studentData.groups.grade_2" v-bind:key="index.groupName">
                   <div> <span class="project-info-div" style="width: 20%;">{{ item.boothNumber }}</span> <span class="project-info-div" style="width: 80%;">{{ item.workTitle }}</span> </div> 

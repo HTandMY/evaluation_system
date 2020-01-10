@@ -2,8 +2,10 @@
   <div>
         <div><router-link tag="button" to="/" class="button">BACK</router-link></div>
         <div>
-            <router-link class="button grade2" tag="button" :to="{path : '/visitor/grade2'}"></router-link>
-            <router-link class="button grade1" tag="button" :to="{path : '/visitor/grade1'}"></router-link>
+            <div class="select_grade">
+                <router-link class="button grade2" tag="button" :to="{path : '/visitor/grade2'}"></router-link>
+                <router-link class="button grade1" tag="button" :to="{path : '/visitor/grade1'}"></router-link>
+            </div>
             <router-view></router-view>
         </div>
   </div>
@@ -44,8 +46,13 @@ export default {
 
 <style>
 .button {
-    width: 250px;
-    height: 100px;
+    width: 150px;
+    height: 60px;
+}
+.select_grade{
+    display: flex;
+    padding: 0;
+    justify-content: space-evenly;
 }
 .button.grade2 {
     background: url("./../assets/2ndyearstudents@2x.png") 50% 50%;
@@ -56,6 +63,6 @@ export default {
     background-size: 100% 100%;  
 }
 .button.actived {
-    background-size:150% 150%;
+    background-size:105% 105%;
 }
 </style>
