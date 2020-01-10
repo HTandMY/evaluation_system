@@ -49,7 +49,6 @@ export default {
     box-shadow: #00A3D5 0px 0px 8px;
     border-radius: 5px;
     font-size: 14px;
-    /* text-align: center; */
 }
 .student-info-container{
     padding: 0;
@@ -63,9 +62,11 @@ export default {
     margin: 0 auto;
     display:block;
     width: 100%;
+    padding-bottom: 30px;
 }
 .project-info-container {
     padding: 0;
+    margin: 0 ;
     list-style-type: none;
     display: flex;
     flex-wrap: wrap ;

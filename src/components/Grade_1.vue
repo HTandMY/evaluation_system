@@ -5,11 +5,17 @@
             <div class="grid-container">
             
                 <ul class="project-header-container">
-                <!-- <li class="project-info" v-for="(item, index) in studentData.groups.grade_1" v-bind:key="item.groupName"> -->
-                <li class="project-header" v-for="(item) in studentData.groups.grade_1" v-bind:key="item.groupName">
-                    <div>{{ item.groupName }}</div>
+                <li class="project-header" v-for="(item, index) in studentData.groups.grade_1" v-bind:key="item[index]">
+                    <div>{{ item[index] }}</div>
                     <ul class="project-info-container">
-                        <li class="project-info" v-for="(item_1 , index_1) in item.members" v-bind:key="index_1.id ">
+                        <li class="project-info" v-for="(item_1, index_1) in item[index]" v-bind:key="index_1.id" >
+                            <div>作品名</div>
+                            
+                            <div>学生名前</div>
+                            <div>{{ item[index].name }}</div>
+                        </li>
+                        
+                        <!-- <li class="project-info" v-for="(item_1 , index_1) in item.members" v-bind:key="index_1.id ">
                             {{ studentData.students[item_1.id].boothNumber }}
                             {{studentData.students[item_1.id].workTitle}}
                             <ul class="student-info-container">
@@ -18,7 +24,7 @@
                                     {{ studentData.students[item_1.id].name }} 
                                 </div>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
             </ul>
@@ -51,16 +57,16 @@ export default {
     margin: 0 auto;
     padding: 0;
 }
-/* .project-header > div {
+.project-header > div {
     padding: 0 0 0 40px;
-} */
-/* .project-info{
+}
+.project-info{
     border: solid 2px #CAF2FF;
     background-color: #CAF2FF20;
     box-shadow: #00A3D5 0px 0px 8px;
     border-radius: 5px;
     font-size: 14px;
-} */
+}
 /* .student-info-container{
     padding: 0;
 } */
@@ -72,19 +78,21 @@ export default {
     display:block;
     width: 100%;
 }
-/* .project-info-container {
-    padding: 10px;
+.project-info-container {
+    padding: 0;
+    margin: 0 ;
     list-style-type: none;
     display: flex;
     flex-wrap: wrap ;
     justify-content: space-evenly;
-} */
-/* .project-info-container > li {
-    width: 30vw;
-    margin: 10px;
+}
+.project-info-container > li {
+    min-width: 130px;
+    margin: 5px;
     color: #fff;
     padding: 15px;
-} */
+    flex: 1;
+}
 .worksimg{
     width: 100%;
 }
