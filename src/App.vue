@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <button v-on:click="fullscreen">fullscreen</button>
-
-
     <div id="app_content">
       <router-view/>
     </div>
@@ -21,9 +18,7 @@ export default {
     }
   },
   methods : {
-    fullscreen() {
-      document.body.requestFullscreen();
-    }
+
   }
 }
 </script>
@@ -41,10 +36,7 @@ body{
   min-height: 100vh;
   width: 100vw;
 }
-#app:fullscreen {
-  background-image: url('assets/bg_UI@2x.png') ;
-  background-position: 50% 50%;
-}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

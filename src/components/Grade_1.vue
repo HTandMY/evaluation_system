@@ -3,18 +3,17 @@
       <div>
             <h1 class="page-title">進級制作</h1>
             <div class="grid-container">
-            
                 <ul class="project-header-container">
                 <li class="project-header" v-for="(item, key) in studentData.groups.grade_1" v-bind:key="key">
                     <div>{{key}}</div>
                     <ul class="project-info-container">
-                        <li class="project-info" v-for="(item_1, index_1) in item" v-bind:key="index_1.id" >
-                            <div>
+                        <li class="project-info" v-for="item_1 in item" v-bind:key="item_1.id" >
+                            <div v-on:click="setStudentData(item_1.id , item_1.workTitle)">
                                 <span class="project-info-div" style="width: 20%;">{{ item_1.boothNumber }}</span>
                                 <span class="project-info-div" style="width: 80%;">{{ item_1.workTitle }}</span>
                                 <img class="worksimg" src="@/assets/1styearstudents@2x.png" alt="">
                                 <span>{{item_1.name}}</span>
-                            </div> 
+                            </div>
                         </li>
                     </ul>
                 </li>
@@ -32,7 +31,13 @@ export default {
         return {
             studentData: studentData
         }
-    }
+    },
+    methods: {
+        setStudentData(id , workTitle){
+            this.$store.commit('setStudentId' , {student : [{id : id}] , groupName : workTitle});
+            this.$router.push({ path: '/evaluate' });
+        }
+    },
 }
 </script>
 

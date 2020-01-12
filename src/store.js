@@ -13,12 +13,20 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   //状态
   state:{
-    visitorMessage : []
+    visitorMessage : [],
+    studentData : []
   },
   //同步操作方法
   mutations: {
     readVisitorMessage(state){
       state.visitorMessage = JSON.parse(localStorage.visitor)
+    },
+    readStudentData(state){
+      state.studentData = JSON.parse();
+    },
+    setStudentId(state , message){
+      state.visitorMessage.student = message.student;
+      state.visitorMessage.groupName = message.groupName;
     }
   },
   //异步操作方法

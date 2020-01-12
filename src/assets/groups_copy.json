@@ -154,13 +154,13 @@
             "進級制作_Gravis" :[
                 {
                     "id" : "19aw0104" , 
-                    "name" : "今井大輝",
+                    "name" : "今井 大輝",
                     "boothNumber" : "99",
                     "workTitle" : "作品名"
                 },
                 {
                     "id" : "19AW0118" , 
-                    "name" : "羽田真菜美",
+                    "name" : "羽田 真菜美",
                     "boothNumber" : "99",
                     "workTitle" : "作品名"
                 },
@@ -172,19 +172,19 @@
                 },
                 {
                     "id" : "19aw0124" , 
-                    "name" : "山下航志郎",
+                    "name" : "山下 航志郎",
                     "boothNumber" : "99",
                     "workTitle" : "作品名"
                 },
                 {
                     "id" : "19aw0131" , 
-                    "name" : "宮下颯斗",
+                    "name" : "宮下 颯斗",
                     "boothNumber" : "99",
                     "workTitle" : "作品名"
                 },
                 {
                     "id" : "19aw0132" , 
-                    "name" : "金健敏",
+                    "name" : "金 健敏",
                     "boothNumber" : "99",
                     "workTitle" : "作品名"
                 }
@@ -307,7 +307,7 @@
                 "workTitle" : "卒業制作_告知サイト",
                 "members" : [
                     {"id" : "18aw0124", "name" : "楊 詩俞"},
-                    {"id" : "18aw0130", "name" : "橋本輝瑠"}
+                    {"id" : "18aw0130", "name" : "橋本 輝瑠"}
                 ],
                 "boothNumber" : "99"
             },
@@ -325,7 +325,7 @@
                 "workTitle" : "卒業制作_Unityゲーム",
                 "members" : [
                     {"id" : "18aw0114", "name" : "真田 拓実"},
-                    {"id" : "18aw0130", "name" : "橋本輝瑠"}
+                    {"id" : "18aw0130", "name" : "橋本 輝瑠"}
                 ],
                 "boothNumber" : "99"
             }

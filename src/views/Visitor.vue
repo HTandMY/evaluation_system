@@ -25,7 +25,7 @@ export default {
     },
     methods: {
         changeURL(){
-             this.$router.push({ path: '/visitorsignin' })
+            this.$router.push({ path: '/visitorsignin' })
         },
         readLocalStorage(){
             if(localStorage.visitor == undefined){

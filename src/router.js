@@ -14,6 +14,8 @@ const Visitor = () => import('./views/Visitor.vue');
 const VisitorSignin = () => import('./views/VisitorSignin.vue');
 const Student = () => import('./views/Student.vue');
 const StudentSignin = () => import('./views/StudentSignin.vue');
+const Evaluate = () => import('./views/Evaluate.vue');
+
 const Grade_2 = () => import('./components/Grade_2.vue');
 const Grade_1 = () => import('./components/Grade_1.vue');
 
@@ -51,6 +53,11 @@ const router = new Router({
       component : VisitorSignin,
       meta : {title: '評価システム | 来場者登録'}
     },
+    {
+      path: '/evaluate',
+      component : Evaluate,
+      meta : {title: '評価システム | 評価ページ'}
+    }, 
     {
       path: '/student',
       component : Student,
