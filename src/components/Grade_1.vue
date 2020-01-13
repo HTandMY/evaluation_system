@@ -7,8 +7,8 @@
                 <li class="project-header" v-for="(item, key) in studentData.groups.grade_1" v-bind:key="key">
                     <div>{{key}}</div>
                     <ul class="project-info-container">
-                        <li class="project-info" v-for="item_1 in item" v-bind:key="item_1.id" >
-                            <div v-on:click="setStudentData(item_1.id , item_1.workTitle)">
+                        <li class="project-info" v-for="item_1 in item" v-bind:key="item_1.id">
+                            <div v-on:click="setStudentData(item_1.id , item_1.name , item_1.workTitle)">
                                 <span class="project-info-div" style="width: 20%;">{{ item_1.boothNumber }}</span>
                                 <span class="project-info-div" style="width: 80%;">{{ item_1.workTitle }}</span>
                                 <img class="worksimg" src="@/assets/1styearstudents@2x.png" alt="">
@@ -33,8 +33,8 @@ export default {
         }
     },
     methods: {
-        setStudentData(id , workTitle){
-            this.$store.commit('setStudentId' , {student : [{id : id}] , groupName : workTitle});
+        setStudentData(id , name , workTitle){
+            this.$store.commit('setStudentId' , {student : [{id : id , name : name}] , groupName : workTitle});
             this.$router.push({ path: '/evaluate' });
         }
     },

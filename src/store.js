@@ -13,8 +13,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   //状态
   state:{
-    visitorMessage : [],
-    studentData : []
+    visitorMessage : {},
+    studentData : {}
   },
   //同步操作方法
   mutations: {
@@ -25,7 +25,7 @@ export default new Vuex.Store({
       state.studentData = JSON.parse();
     },
     setStudentId(state , message){
-      state.visitorMessage.student = message.student;
+      state.visitorMessage.students = message.student;
       state.visitorMessage.groupName = message.groupName;
     }
   },
