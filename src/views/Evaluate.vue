@@ -56,11 +56,13 @@
                 <div><input class="tagInput" type="text" name="" id="" ref="text"></div>
             </div>
         </div>
-        <div><button>送信</button></div>
+        <div><button v-on:click="sendMessage()">送信</button></div>
     </div>
 </template>
 
 <script>
+import * as firebase from 'firebase/app';
+import 'firebase/database';
 export default {
     name : 'evaluate',
     data() {
@@ -70,8 +72,14 @@ export default {
     },
     methods: {
         readVisitorData(){
-           this.data = this.$store.state.visitorMessage;
-           this.data.evaluat = {groupName : this.data.groupName}
+            this.data = this.$store.state.visitorMessage;
+            this.data.evaluat = {
+               groupName : this.data.groupName,
+               occupation : this.data.occupation
+            }
+            if(this.data.job){
+                this.data.evaluat.job = this.data.job;
+            }
         },
         autoSelectStudent(){
             this.$refs.name[0].style.border = "10px solid orange";
@@ -96,8 +104,24 @@ export default {
         addTags(tag){
             let n = this.$refs.text.value.search(this.$refs[tag].innerText);
             if(n == -1){
-                this.$refs.text.value += this.$refs[tag].innerText + " ";
+                this.$refs.text.value += this.$refs[tag].innerText + ",";
             }
+        },
+        sendMessage(){
+            let self = this;
+            let studentsLength = this.data.students.length;
+            let num = [];
+            let updates = {};
+            let ref = firebase.database().ref("students").once("value").then(function(data){
+                    for(let i = 0 ; i < studentsLength ; i++){
+                        num[i] = data.child(self.data.students[i].id + "/comments").numChildren();
+                    }
+            }).then(function(){
+                for(let i in self.data.students){
+                    updates['/students/' + self.data.students[i].id + '/comments/' + num[i]] = self.data.evaluat;
+                }
+                firebase.database().ref().update(updates);
+            });
         }
     },
     mounted() {
