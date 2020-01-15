@@ -5,16 +5,6 @@
             <div><img id="title_img" src="@/assets/worktitle.jpg" alt=""></div>
         </div>
         <div>
-            <h2>プレゼンされた学生：</h2>
-            <div class="members">
-                <div class="members-member" v-for="(item , index) in data.students" v-bind:key="item.id" >
-                    <div class="member-box" v-on:click="selectStudent(index)">
-                        <div class="chick-box" ref="name"></div><p class="member-name">{{item.name}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
             <h2>作品を評価してください</h2>
             <div>
                 <div class="project-box">
@@ -46,6 +36,16 @@
             <textarea id="comment"></textarea>
         </div>
         <div>
+            <h2>プレゼンされた学生：</h2>
+            <div class="members">
+                <div class="members-member" v-for="(item , index) in data.students" v-bind:key="item.id" >
+                    <div class="member-box" v-on:click="selectStudent(index)">
+                        <div class="chick-box" ref="name"></div><p class="member-name">{{item.name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div  v-if="data.student != undefined">
             <h2>この学生に当てはまる言葉を選んでください</h2>
             <div>
                 <div class="tag" ref="tag1" v-on:click="addTags('tag1')">笑顔</div>
@@ -73,24 +73,20 @@ export default {
     methods: {
         readVisitorData(){
             this.data = this.$store.state.visitorMessage;
-            this.data.evaluat = {
+            this.$set(this.data , "evaluat" , {
                groupName : this.data.groupName,
                occupation : this.data.occupation
-            }
+            });
             if(this.data.job){
-                this.data.evaluat.job = this.data.job;
+                this.$set(this.data.evaluat , "job" , this.data.job);
             }
-        },
-        autoSelectStudent(){
-            this.$refs.name[0].style.border = "10px solid orange";
-            this.data.student = this.data.students[0].id;
         },
         selectStudent(index){          
             for(let i = 0 ; i < this.$refs.name.length ; i++){
                 this.$refs.name[i].style.border = "none";
             }
             this.$refs.name[index].style.border = "10px solid orange";
-            this.data.student = this.data.students[index].id;
+            this.$set(this.data , "student" , this.data.students[index].id);
         },
         setPoint(projectName , num){
             for(let i = 0 ; i < 5 ; i++){
@@ -99,7 +95,7 @@ export default {
             for(let i = 0 ; i < num ; i++){
                 this.$refs[projectName][i].style.background = "aqua";
             }
-            this.data.evaluat[projectName] = num;
+            this.$set(this.data.evaluat , projectName , num);
         },
         addTags(tag){
             let n = this.$refs.text.value.search(this.$refs[tag].innerText);
@@ -118,9 +114,9 @@ export default {
                     }
             }).then(function(){
                 for(let i in self.data.students){
-                    updates['/students/' + self.data.students[i].id + '/comments/' + num[i]] = self.data.evaluat;
+                    updates[self.data.students[i].id + '/comments/' + num[i]] = self.data.evaluat;
                 }
-                firebase.database().ref().update(updates);
+                firebase.database().ref("students").update(updates);
             });
         }
     },
@@ -128,7 +124,7 @@ export default {
         this.readVisitorData();
     },
     updated() {
-        this.autoSelectStudent();
+        // this.autoSelectStudent();
     },
 }
 </script>
