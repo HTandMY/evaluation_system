@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <div>
-            <h1>{{data.groupName}}</h1>
+            <h1>{{evaluat.groupName}}</h1>
             <div><img id="title_img" src="@/assets/worktitle.jpg" alt=""></div>
         </div>
         <div>
@@ -33,30 +33,42 @@
                 </div>
             </div>
             <h2>作品についてコメントがありましたら</h2>
-            <textarea id="comment"></textarea>
+            <textarea id="comment" maxlength="128" v-model="evaluat.comment"></textarea>
         </div>
         <div>
             <h2>プレゼンされた学生：</h2>
             <div class="members">
-                <div class="members-member" v-for="(item , index) in data.students" v-bind:key="item.id" >
+                <div class="members-member" v-for="(item , index) in students" v-bind:key="item.id" >
                     <div class="member-box" v-on:click="selectStudent(index)">
                         <div class="chick-box" ref="name"></div><p class="member-name">{{item.name}}</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div  v-if="data.student != undefined">
-            <h2>この学生に当てはまる言葉を選んでください</h2>
-            <div>
-                <div class="tag" ref="tag1" v-on:click="addTags('tag1')">笑顔</div>
-                <div class="tag" ref="tag2" v-on:click="addTags('tag2')">向上心</div>
-                <div class="tag" ref="tag3" v-on:click="addTags('tag3')">熱意</div>
-                <div class="tag" ref="tag4" v-on:click="addTags('tag4')">チャレンジ精神</div>
-                <div class="tag" ref="tag5" v-on:click="addTags('tag5')">好奇心旺盛</div>
-                <div><input class="tagInput" type="text" name="" id="" ref="text"></div>
+        <transition name="slide-fade">
+            <div  v-if="selectedStudent != ''">
+                <h2>この学生に当てはまる言葉を選んでください</h2>
+                <div>
+                    <div class="tag" ref="tag1" v-on:click="addTags('tag1')">笑顔</div>
+                    <div class="tag" ref="tag2" v-on:click="addTags('tag2')">向上心</div>
+                    <div class="tag" ref="tag3" v-on:click="addTags('tag3')">熱意</div>
+                    <div class="tag" ref="tag4" v-on:click="addTags('tag4')">チャレンジ精神</div>
+                    <div class="tag" ref="tag5" v-on:click="addTags('tag5')">好奇心旺盛</div>
+                    <div><input class="tagInput" type="text" name="" id="" ref="text" v-model="tags"></div>
+                </div>
             </div>
+        </transition>
+        <div class="button-box">
+            <button v-on:click="sendMessage()">送信</button>
         </div>
-        <div><button v-on:click="sendMessage()">送信</button></div>
+        <transition name="fade">
+            <div class="messageBox" v-if="showMessage">
+                <div id="messageBox_1">
+                    <p id="message">{{ message }}</p>
+                    <button v-on:click="closeMessageBox()">閉じる</button>
+                </div>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -67,18 +79,27 @@ export default {
     name : 'evaluate',
     data() {
         return {
-            data : {}
+            evaluat : {},
+            students : [],
+            selectedStudent : "",
+            tags : "",
+            message : "",
+            showMessage : false,
+            success : false
         }
     },
     methods: {
         readVisitorData(){
             this.data = this.$store.state.visitorMessage;
-            this.$set(this.data , "evaluat" , {
-               groupName : this.data.groupName,
-               occupation : this.data.occupation
+            this.students = this.$store.state.visitorMessage.students;
+            this.evaluat = Object.assign({}, this.evaluat, {
+                groupName: this.$store.state.visitorMessage.groupName,
+                occupation: this.$store.state.visitorMessage.occupation
             });
             if(this.data.job){
-                this.$set(this.data.evaluat , "job" , this.data.job);
+                this.evaluat = Object.assign({}, this.evaluat, {
+                    job: this.$store.state.visitorMessage.job
+                });
             }
         },
         selectStudent(index){          
@@ -86,7 +107,7 @@ export default {
                 this.$refs.name[i].style.border = "none";
             }
             this.$refs.name[index].style.border = "10px solid orange";
-            this.$set(this.data , "student" , this.data.students[index].id);
+            this.selectedStudent = this.students[index].id;
         },
         setPoint(projectName , num){
             for(let i = 0 ; i < 5 ; i++){
@@ -95,37 +116,71 @@ export default {
             for(let i = 0 ; i < num ; i++){
                 this.$refs[projectName][i].style.background = "aqua";
             }
-            this.$set(this.data.evaluat , projectName , num);
+            this.evaluat = Object.assign({}, this.evaluat, {
+                [projectName] : num
+            });
         },
         addTags(tag){
             let n = this.$refs.text.value.search(this.$refs[tag].innerText);
             if(n == -1){
-                this.$refs.text.value += this.$refs[tag].innerText + ",";
+                this.tags += this.$refs[tag].innerText + ",";
             }
         },
         sendMessage(){
-            let self = this;
-            let studentsLength = this.data.students.length;
-            let num = [];
-            let updates = {};
-            let ref = firebase.database().ref("students").once("value").then(function(data){
-                    for(let i = 0 ; i < studentsLength ; i++){
-                        num[i] = data.child(self.data.students[i].id + "/comments").numChildren();
-                    }
-            }).then(function(){
-                for(let i in self.data.students){
-                    updates[self.data.students[i].id + '/comments/' + num[i]] = self.data.evaluat;
+            if(this.evaluat.coding && this.evaluat.design && this.evaluat.plan && this.evaluat.presentation){
+                let self = this;
+                let studentsLength = this.students.length;
+                let num = [];
+                let tagNum = 0;
+                let newtags = {};
+                let updates = {};
+                
+                let tags = this.tags.split(/\s+|\,|、|，/);
+                tags = tags.filter(function(tag){
+                    return tag != ""
+                });
+                
+                if(this.selectedStudent && tags == ""){
+                    this.showMessage = true;
+                    this.message = "タグを入力してください"
                 }
-                firebase.database().ref("students").update(updates);
-            });
+
+                let ref = firebase.database().ref("students").once("value").then(function(data){
+                        for(let i = 0 ; i < studentsLength ; i++){
+                            num[i] = data.child(self.students[i].id + "/comments").numChildren();
+                        }
+                        tagNum = data.child(self.selectedStudent + "/tags/others").numChildren();
+                }).then(function(){
+                    for(let i in self.students){
+                        updates[self.students[i].id + "/comments/" + num[i]] = self.evaluat;
+                    }
+                    if(tags){
+                        for(let i in tags){
+                            updates[self.selectedStudent + "/tags/others/" + (tagNum + Number(i))] = tags[i]
+                        }
+                    }
+                    firebase.database().ref("students").update(updates);
+                }).then(function(){
+                    self.showMessage = true;
+                    self.success = true;
+                    self.message = "評価しました"
+                });
+            }else{
+                this.showMessage = true;
+                this.message = "作品を評価してください"
+            }
+        },
+        closeMessageBox(){
+            if(this.success){
+                this.$router.push({ path: '/visitor' });
+            }else{
+                this.showMessage = false
+            }
         }
     },
     mounted() {
         this.readVisitorData();
-    },
-    updated() {
-        // this.autoSelectStudent();
-    },
+    }
 }
 </script>
 
@@ -202,6 +257,10 @@ export default {
         width: 100%;
         height: 100px
     }
+    .button-box{
+        margin: 20px auto;
+        text-align: center;
+    }
     .tag{
         display: inline-block;
         padding: 10px 15px;
@@ -213,5 +272,49 @@ export default {
     }
     .tagInput{
         width: 100%;
+        margin: 20px 0;
+    }
+    .messageBox{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.7);
+        text-align: center;
+    }
+    #message {
+        color: #ffffff;
+    }
+    #messageBox_1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50% , -50%);
+    }
+    #messageBox_1 button {
+        margin: 20px 0;
+    }
+
+    .fade-enter-active {
+        transition: all .3s ease;
+    }
+    .fade-leave-active {
+        transition: all .3s ease;
+    }
+    .fade-enter, .fade-leave-to{
+        transform: scale(0.7 , 0.7);
+        opacity: 0;
+    }
+
+    .slide-fade-enter-active {
+        transition: all .5s ease;
+    }
+    .slide-fade-leave-active {
+        transition: all .5s ease;
+    }
+    .slide-fade-enter, .slide-fade-leave-to{
+        transform: translateY(10px);
+        opacity: 0;
     }
 </style>
