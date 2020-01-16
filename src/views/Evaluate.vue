@@ -1,11 +1,13 @@
 <template>
     <div class="content">
+        <a @click="$router.go(-1)">back</a>
         <div>
             <h1>{{evaluat.groupName}}</h1>
+            <div v-for="(item , index) in students" v-bind:key="item.id" class="info-member-name">{{item.name}}</div>
             <div><img id="title_img" src="@/assets/worktitle.jpg" alt=""></div>
         </div>
         <div>
-            <h2>作品を評価してください</h2>
+            <h2>作品を評価してください<span class="required">※必須</span></h2>
             <div>
                 <div class="project-box">
                     <div class="project">企画力</div>
@@ -204,7 +206,12 @@ export default {
     #title_img {
         width: 100%;
     }
-
+.info-member-name {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
     .members-member{
         margin: 10px 0;
     }
@@ -258,7 +265,15 @@ export default {
     }
     #comment{
         width: 100%;
-        height: 100px
+        height: 100px;
+        resize: none;
+        border-radius: 5px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        padding: 5px;
+        box-sizing: border-box;
+        box-shadow: #00000075 0px 1px 1px inset;
     }
     .button-box{
         padding: 20px 0;
@@ -285,6 +300,7 @@ export default {
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.7);
         text-align: center;
+        
     }
     #message {
         color: #ffffff;
@@ -319,5 +335,12 @@ export default {
     .slide-fade-enter, .slide-fade-leave-to{
         transform: translateY(10px);
         opacity: 0;
+    }
+    .required {
+        font-size: 14px;
+        background-color: black;
+        padding: 5px;
+        margin-left: 5px;
+        vertical-align: middle;
     }
 </style>

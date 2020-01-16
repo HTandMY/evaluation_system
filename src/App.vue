@@ -24,6 +24,15 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: "KaisoNext";
+    src:url('fonts/Kaiso-Next-B.otf');
+}
+
+@font-face {
+    font-family: "SmartPhoneUI";
+    src:url('fonts/Smart-Phone-UI.otf');
+}
 body{
   margin: 0;
   padding: 0;
@@ -38,7 +47,7 @@ body{
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'SmartPhoneUI', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

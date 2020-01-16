@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div key="grade-1">
         <h1 class="page-title">進級制作</h1>
         <div class="grid-container">
             <ul class="project-header-container">
@@ -8,10 +8,10 @@
                     <ul class="project-info-container">
                         <li class="project-info" v-for="item_1 in item" v-bind:key="item_1.id">
                             <div v-on:click="setStudentData(item_1.id , item_1.name , item_1.workTitle)">
-                                <span class="project-info-div" style="width: 20%;">{{ item_1.boothNumber }}</span>
+                                <span class="project-info-div" style="width: 20%;font-size: 18px; margin-bottom: 10px; text-align: center; color: rgb(255, 204, 35);">{{ item_1.boothNumber }}</span>
                                 <span class="project-info-div" style="width: 80%;">{{ item_1.workTitle }}</span>
-                                <img class="worksimg" src="@/assets/1styearstudents@2x.png" alt="">
-                                <span>{{item_1.name}}</span>
+                                <img class="worksimg" src="@/assets/worktitle.jpg" alt="">
+                                <span class="grade-1 student-info" >{{item_1.name}}</span>
                             </div>
                         </li>
                     </ul>
@@ -52,7 +52,9 @@ export default {
     padding: 0;
 }
 .project-header > div {
-    padding: 0 0 0 40px;
+    padding: 20px 0 10px 40px;
+    font-size: 20px;
+    font-weight: bold;
 }
 .project-info{
     border: solid 2px #CAF2FF;
@@ -83,5 +85,10 @@ export default {
 }
 .worksimg{
     width: 100%;
+}
+.grade-1.student-info{
+    color: rgb(255, 204, 35);
+    font-size: 11px;
+    font-weight: bold;
 }
 </style>

@@ -1,15 +1,15 @@
 <template>
-    <div>
+    <div key="grade-2">
         <h1 class="page-title">卒業制作</h1>
         <div class="grid-container">
             <ul class="project-info-container">
                 <li class="project-info" v-for="(item , index) in studentData.groups.grade_2" v-bind:key="index.groupName">
                     <div v-on:click="setStudentData(item.members , item.workTitle)">
                         <div>
-                            <div class="project-info-div" style="width: 20%;">{{ item.boothNumber }}</div>
+                            <div class="project-info-div" style="width: 20%; font-size: 18px; margin-bottom: 10px; text-align: center; color: rgb(74, 202, 241);">{{ item.boothNumber }}</div>
                             <div class="project-info-div" style="width: 80%;">{{ item.workTitle }}</div>
                         </div> 
-                        <div><img class="worksimg" src="@/assets/1styearstudents@2x.png" alt=""></div>
+                        <div><img class="worksimg" src="@/assets/worktitle.jpg" alt=""></div>
                         <ul class="student-info-container">
                             <li class="student-info" v-for="item_1 in item.members" v-bind:key="item_1.id">
                                 {{ item_1.name }}
@@ -51,6 +51,8 @@ export default {
     word-break: break-all;
     vertical-align: top;
     max-height: 110px;
+    line-height: 1.2rem;
+    font-weight: bold;
 }
 .project-info{
     border: solid 2px #CAF2FF;
@@ -63,9 +65,12 @@ export default {
     padding: 0;
 }
 .student-info{
-    font-size: 12px;
+    font-size: 14px;
     /* text-align: center; */
     list-style-type: none;
+    font-weight: bold;
+    color: rgb(122, 224, 255);
+    margin-bottom: 12px;
 }
 .grid-container{
     margin: 0 auto;
@@ -80,6 +85,8 @@ export default {
     display: flex;
     flex-wrap: wrap ;
     justify-content: space-evenly;
+         
+     
 }
 .project-info-container > li {
     min-width: 130px;
@@ -91,5 +98,11 @@ export default {
 }
 .worksimg{
     width: 100%;
+    border: solid 2px #CAF2FF;
+    background-color: #CAF2FF20;
+    box-shadow: #00A3D5 0px 0px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 10px auto;
 }
 </style>
