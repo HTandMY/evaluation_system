@@ -61,7 +61,7 @@
         <div class="button-box">
             <button v-on:click="sendMessage()">送信</button>
         </div>
-        <transition name="fade">
+        <transition name="scale">
             <div class="messageBox" v-if="showMessage">
                 <div id="messageBox_1">
                     <p id="message">{{ message }}</p>
@@ -106,7 +106,7 @@ export default {
             for(let i = 0 ; i < this.$refs.name.length ; i++){
                 this.$refs.name[i].style.border = "none";
             }
-            this.$refs.name[index].style.border = "10px solid orange";
+            this.$refs.name[index].style.border = "10px solid aqua";
             this.selectedStudent = this.students[index].id;
         },
         setPoint(projectName , num){
@@ -135,16 +135,17 @@ export default {
                 let newtags = {};
                 let updates = {};
                 
-                let tags = this.tags.split(/\s+|\,|、|，/);
+                let tags = this.tags.split(/\s+|,+|、+|，+/);
                 tags = tags.filter(function(tag){
                     return tag != ""
                 });
                 
                 if(this.selectedStudent && tags == ""){
                     this.showMessage = true;
-                    this.message = "タグを入力してください"
+                    //タグ入力しない表示されるメッセージ
+                    this.message = "タグを入力してください";
+                    return
                 }
-
                 let ref = firebase.database().ref("students").once("value").then(function(data){
                         for(let i = 0 ; i < studentsLength ; i++){
                             num[i] = data.child(self.students[i].id + "/comments").numChildren();
@@ -163,10 +164,12 @@ export default {
                 }).then(function(){
                     self.showMessage = true;
                     self.success = true;
+                    //評価成功した表示されるメッセージ
                     self.message = "評価しました"
                 });
             }else{
                 this.showMessage = true;
+                //ポイントしない表示されるメッセージ
                 this.message = "作品を評価してください"
             }
         },
@@ -258,7 +261,7 @@ export default {
         height: 100px
     }
     .button-box{
-        margin: 20px auto;
+        padding: 20px 0;
         text-align: center;
     }
     .tag{
@@ -296,13 +299,13 @@ export default {
         margin: 20px 0;
     }
 
-    .fade-enter-active {
+    .scale-enter-active {
         transition: all .3s ease;
     }
-    .fade-leave-active {
+    .scale-leave-active {
         transition: all .3s ease;
     }
-    .fade-enter, .fade-leave-to{
+    .scale-enter, .scale-leave-to{
         transform: scale(0.7 , 0.7);
         opacity: 0;
     }

@@ -92,6 +92,4 @@ export default {
 .worksimg{
     width: 100%;
 }
-
-    /* 20% 透明度　 */
 </style>

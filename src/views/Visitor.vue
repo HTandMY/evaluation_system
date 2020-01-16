@@ -6,7 +6,9 @@
                 <router-link class="button grade2" tag="button" :to="{path : '/visitor/grade2'}"></router-link>
                 <router-link class="button grade1" tag="button" :to="{path : '/visitor/grade1'}"></router-link>
             </div>
-            <router-view></router-view>
+            <transition name="fade">
+                <router-view></router-view>
+            </transition>
         </div>
   </div>
 </template>
@@ -64,5 +66,16 @@ export default {
 }
 .button.actived {
     background-size:105% 105%;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .3s;
+}
+.fade-enter-active {
+  transition-delay: .3s;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0
 }
 </style>

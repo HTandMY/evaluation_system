@@ -1,9 +1,8 @@
 <template>
-  <div>
-      <div>
-            <h1 class="page-title">進級制作</h1>
-            <div class="grid-container">
-                <ul class="project-header-container">
+    <div>
+        <h1 class="page-title">進級制作</h1>
+        <div class="grid-container">
+            <ul class="project-header-container">
                 <li class="project-header" v-for="(item, key) in studentData.groups.grade_1" v-bind:key="key">
                     <div>{{key}}</div>
                     <ul class="project-info-container">
@@ -18,9 +17,8 @@
                     </ul>
                 </li>
             </ul>
-            </div>
         </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -63,12 +61,6 @@ export default {
     border-radius: 5px;
     font-size: 14px;
 }
-/* .student-info-container{
-    padding: 0;
-} */
-/* .student-info{
-    list-style-type: none;
-} */
 .grid-container{
     margin: 0 auto;
     display:block;

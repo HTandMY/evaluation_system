@@ -31,7 +31,7 @@ body{
 }
 #app {
   background-image: url('assets/bg_UI@2x.png') ;
-  background-position: 50% 50%;
+  background-repeat: repeat;
   height: 100%;
   min-height: 100vh;
   width: 100vw;
@@ -42,14 +42,5 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* #nav button {
-  width: 100px;
-  height: 30px;
-  margin: 0 5px;
-}
- #nav .active {
-  color : red;
-  font-weight: bold;
-} */
 
 </style>
