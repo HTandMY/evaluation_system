@@ -3,7 +3,7 @@
         <a @click="$router.go(-1)">back</a>
         <div>
             <h1>{{evaluat.groupName}}</h1>
-            <div v-for="(item , index) in students" v-bind:key="item.id" class="info-member-name">{{item.name}}</div>
+            <div v-for="item in students" v-bind:key="item.id" class="info-member-name">{{item.name}}</div>
             <div><img id="title_img" src="@/assets/worktitle.jpg" alt=""></div>
         </div>
         <div>
@@ -202,16 +202,17 @@ export default {
     }
     h2 {
         color: #ffffff;
+        position: relative;
     }
     #title_img {
         width: 100%;
     }
-.info-member-name {
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
+    .info-member-name {
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
     .members-member{
         margin: 10px 0;
     }
@@ -337,10 +338,12 @@ export default {
         opacity: 0;
     }
     .required {
+        position: absolute;
         font-size: 14px;
-        background-color: black;
+        background-color: #ff8800;
         padding: 5px;
         margin-left: 5px;
-        vertical-align: middle;
+        top: 50%;
+        transform: translateY(-50%);
     }
 </style>
