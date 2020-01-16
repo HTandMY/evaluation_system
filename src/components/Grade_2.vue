@@ -111,4 +111,6 @@ export default {
     margin: 10px auto;
     box-sizing: border-box;
 }
+/* display: grid;
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
 </style>
