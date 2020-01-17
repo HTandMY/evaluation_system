@@ -227,7 +227,7 @@ export default {
     .member-box {
         border: 2px solid #CAF2FF;
         border-radius: 5px;
-        background-color: rgba(159 , 223, 243, 0.7)
+        background-color: rgba(159 , 223, 243, 0.5)
     }
     .tag-box{
         width: 100%;

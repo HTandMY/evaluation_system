@@ -39,11 +39,11 @@ body{
   
 }
 #app {
-  background-image: url('assets/bg_UI@2x.png') ;
-  background-repeat: repeat;
+  background: url('assets/bg1000×1000.png') 50% 50%;
+  background-repeat: repeat-y;
   height: 100%;
   min-height: 100vh;
-  width: 100vw;
+  background-attachment: fixed;
 }
 
 #app {
