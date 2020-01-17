@@ -132,40 +132,43 @@ export default {
             }
         },
         sendMessage(){
-            this.addTags();
             if(this.evaluat.coding && this.evaluat.design && this.evaluat.plan && this.evaluat.presentation){
+                this.addTags();
                 let self = this;
                 let studentsLength = this.students.length;
-                let num = [];
-                let tagNum = {};
-                let newtags = {};
+                let commentsNum = [];
                 let updates = {};
-                
+
+                self.showMessage = true;
+                self.message = "送信中。。。"
+
                 let ref = firebase.database().ref("students").once("value").then(function(data){
-                        for(let i = 0 ; i < studentsLength ; i++){
-                            num[i] = data.child(self.students[i].id + "/comments").numChildren();
+                    for(let i in self.students){
+                        commentsNum[i] = data.child(self.students[i].id + "/comments").numChildren();
+                    }
+                    for(let key in self.selectedStudent){
+                        self.selectedStudent[key] = Object.assign({}, self.selectedStudent[key] ,{
+                            num : data.child(key + "/tags/others").numChildren()
+                        });
+                    }
+                    console.log(self.selectedStudent)
+                }).then(function(){
+                    for(let i in self.students){
+                        updates[self.students[i].id + "/comments/" + commentsNum[i]] = self.evaluat;
+                    }
+                    for(let key in self.selectedStudent){
+                        for(let i in self.selectedStudent[key].tags){
+                            updates[key + "/tags/others/" + (self.selectedStudent[key].num + Number(i))] = self.selectedStudent[key].tags[i]
                         }
-                        for(let key in self.selectedStudent){
-                            tagNum[key] = data.child(key + "/tags/others").numChildren();
-                        }
-                        console.log(tagNum)
-                    })
-                // }).then(function(){
-                //     for(let i in self.students){
-                //         updates[self.students[i].id + "/comments/" + num[i]] = self.evaluat;
-                //     }
-                //     if(tags){
-                //         for(let i in tags){
-                //             updates[self.selectedStudent + "/tags/others/" + (tagNum + Number(i))] = tags[i]
-                //         }
-                //     }
-                //     firebase.database().ref("students").update(updates);
-                // }).then(function(){
-                //     self.showMessage = true;
-                //     self.success = true;
-                //     //評価成功した表示されるメッセージ
-                //     self.message = "評価しました"
-                // });
+                    }
+                    firebase.database().ref("students").update(updates);
+                })
+                .then(function(){
+                    self.showMessage = true;
+                    self.success = true;
+                    //評価成功した表示されるメッセージ
+                    self.message = "評価しました"
+                });
             }else{
                 this.showMessage = true;
                 //ポイントしない表示されるメッセージ
