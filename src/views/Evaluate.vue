@@ -40,26 +40,19 @@
         <div>
             <h2>プレゼンされた学生：</h2>
             <div class="members">
-                <div class="members-member" v-for="(item , index) in students" v-bind:key="item.id" >
-                    <div class="member-box" v-on:click="selectStudent(index)">
-                        <div class="chick-box" ref="name"></div><p class="member-name">{{item.name}}</p>
+                <div class="members-member" v-for="item in students" v-bind:key="item.id" >
+                    <div class="member-box" v-on:click="selectStudent(item.id)">
+                        <div class="check-box" :class="{checked : selectedStudent[item.id]}" ref="name"></div><p class="member-name">{{item.name}}</p>
                     </div>
+                    <transition name="slide-fade" mode="out-in">
+                        <div v-if="selectedStudent[item.id]" class="tag-box">
+                            <p>この学生について、どんな印象を持ちましたか？</p>
+                            <TagBox :ref="'tag_' + item.id"/>
+                        </div>
+                    </transition>
                 </div>
             </div>
         </div>
-        <transition name="slide-fade">
-            <div  v-if="selectedStudent != ''">
-                <h2>この学生に当てはまる言葉を選んでください</h2>
-                <div>
-                    <div class="tag" ref="tag1" v-on:click="addTags('tag1')">笑顔</div>
-                    <div class="tag" ref="tag2" v-on:click="addTags('tag2')">向上心</div>
-                    <div class="tag" ref="tag3" v-on:click="addTags('tag3')">熱意</div>
-                    <div class="tag" ref="tag4" v-on:click="addTags('tag4')">チャレンジ精神</div>
-                    <div class="tag" ref="tag5" v-on:click="addTags('tag5')">好奇心旺盛</div>
-                    <div><input class="tagInput" type="text" name="" id="" ref="text" v-model="tags"></div>
-                </div>
-            </div>
-        </transition>
         <div class="button-box">
             <button v-on:click="sendMessage()">送信</button>
         </div>
@@ -77,14 +70,17 @@
 <script>
 import * as firebase from 'firebase/app';
 import 'firebase/database';
+import TagBox from "@/components/TagBox.vue"
 export default {
     name : 'evaluate',
+    components: {
+        TagBox,
+    },
     data() {
         return {
             evaluat : {},
             students : [],
-            selectedStudent : "",
-            tags : "",
+            selectedStudent : {},
             message : "",
             showMessage : false,
             success : false
@@ -104,12 +100,17 @@ export default {
                 });
             }
         },
-        selectStudent(index){          
-            for(let i = 0 ; i < this.$refs.name.length ; i++){
-                this.$refs.name[i].style.border = "none";
+        selectStudent(name){       
+            if(!this.selectedStudent[name]){
+                this.selectedStudent = Object.assign({}, this.selectedStudent, {
+                    [name] : {
+                        select : true,
+                        tags : []
+                    }
+                });
+            }else{
+                this.$delete(this.selectedStudent , name);
             }
-            this.$refs.name[index].style.border = "10px solid aqua";
-            this.selectedStudent = this.students[index].id;
         },
         setPoint(projectName , num){
             for(let i = 0 ; i < 5 ; i++){
@@ -122,53 +123,49 @@ export default {
                 [projectName] : num
             });
         },
-        addTags(tag){
-            let n = this.$refs.text.value.search(this.$refs[tag].innerText);
-            if(n == -1){
-                this.tags += this.$refs[tag].innerText + ",";
+        addTags(){
+            for(let key in this.selectedStudent){
+                for(let i in this.$refs["tag_" + key][0].tags){
+                    this.selectedStudent[key].tags.push(this.$refs["tag_" + key][0].tags[i].text)
+                }
+                console.log(this.selectedStudent[key].tags);
             }
         },
         sendMessage(){
+            this.addTags();
             if(this.evaluat.coding && this.evaluat.design && this.evaluat.plan && this.evaluat.presentation){
                 let self = this;
                 let studentsLength = this.students.length;
                 let num = [];
-                let tagNum = 0;
+                let tagNum = {};
                 let newtags = {};
                 let updates = {};
                 
-                let tags = this.tags.split(/\s+|,+|、+|，+/);
-                tags = tags.filter(function(tag){
-                    return tag != ""
-                });
-                
-                if(this.selectedStudent && tags == ""){
-                    this.showMessage = true;
-                    //タグ入力しない表示されるメッセージ
-                    this.message = "タグを入力してください";
-                    return
-                }
                 let ref = firebase.database().ref("students").once("value").then(function(data){
                         for(let i = 0 ; i < studentsLength ; i++){
                             num[i] = data.child(self.students[i].id + "/comments").numChildren();
                         }
-                        tagNum = data.child(self.selectedStudent + "/tags/others").numChildren();
-                }).then(function(){
-                    for(let i in self.students){
-                        updates[self.students[i].id + "/comments/" + num[i]] = self.evaluat;
-                    }
-                    if(tags){
-                        for(let i in tags){
-                            updates[self.selectedStudent + "/tags/others/" + (tagNum + Number(i))] = tags[i]
+                        for(let key in self.selectedStudent){
+                            tagNum[key] = data.child(key + "/tags/others").numChildren();
                         }
-                    }
-                    firebase.database().ref("students").update(updates);
-                }).then(function(){
-                    self.showMessage = true;
-                    self.success = true;
-                    //評価成功した表示されるメッセージ
-                    self.message = "評価しました"
-                });
+                        console.log(tagNum)
+                    })
+                // }).then(function(){
+                //     for(let i in self.students){
+                //         updates[self.students[i].id + "/comments/" + num[i]] = self.evaluat;
+                //     }
+                //     if(tags){
+                //         for(let i in tags){
+                //             updates[self.selectedStudent + "/tags/others/" + (tagNum + Number(i))] = tags[i]
+                //         }
+                //     }
+                //     firebase.database().ref("students").update(updates);
+                // }).then(function(){
+                //     self.showMessage = true;
+                //     self.success = true;
+                //     //評価成功した表示されるメッセージ
+                //     self.message = "評価しました"
+                // });
             }else{
                 this.showMessage = true;
                 //ポイントしない表示されるメッセージ
@@ -213,6 +210,9 @@ export default {
         margin-bottom: 5px;
         font-weight: bold;
     }
+    .members{
+        transition: all 0.3s;
+    }
     .members-member{
         margin: 10px 0;
     }
@@ -222,11 +222,27 @@ export default {
         color: #ffffff;
     }
     .member-box {
-        border: 1px solid #ffffff;
+        border: 2px solid #CAF2FF;
         border-radius: 5px;
-        background-color: rgba(0, 0, 0, 0.2)
+        background-color: rgba(159 , 223, 243, 0.7)
     }
-    .chick-box{
+    .tag-box{
+        width: 100%;
+        padding: 15px;
+        position: relative;
+        top: -4px;
+        box-sizing: border-box;
+        background-color: rgba(202, 242, 255 , 0.2);
+        border: #CAF2FF dashed 2px;
+        border-top: none;
+        transform-origin: top;
+        border-radius: 0 0 5px 5px;
+    }
+    .tag-box > p {
+        color: #fff;
+        font-size: 18px
+    }
+    .check-box{
         position: relative;
         display: inline-block;
         margin-left: 10px; 
@@ -234,9 +250,13 @@ export default {
         width: 20px;
         height: 20px;
         background: rgb(255, 255, 255);
-        border-radius: 50%;
+        border-radius: 5px;
         box-sizing: border-box;
         transition: all 0.3s;
+    }
+    .checked {
+        background: rgb(100, 100, 100);
+        border: #fff 4px solid;
     }
     .project-box{
         height: 30px;
@@ -280,19 +300,6 @@ export default {
         padding: 20px 0;
         text-align: center;
     }
-    .tag{
-        display: inline-block;
-        padding: 10px 15px;
-        margin: 5px;
-        color: #ffffff;
-        border: 1px solid #ffffff;
-        border-radius: 30px;
-        box-sizing: border-box;
-    }
-    .tagInput{
-        width: 100%;
-        margin: 20px 0;
-    }
     .messageBox{
         position: fixed;
         left: 0;
@@ -328,13 +335,13 @@ export default {
     }
 
     .slide-fade-enter-active {
-        transition: all .5s ease;
+        transition: all .3s ease;
     }
     .slide-fade-leave-active {
-        transition: all .5s ease;
+        transition: all .3s ease;
     }
     .slide-fade-enter, .slide-fade-leave-to{
-        transform: translateY(10px);
+        transform: scaleY(0);
         opacity: 0;
     }
     .required {

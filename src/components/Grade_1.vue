@@ -12,7 +12,7 @@
                                     <span class="project-info-div" style="width: 20%;font-size: 18px; margin-bottom: 10px; text-align: center; color: rgb(255, 204, 35);">{{ item_1.boothNumber }}</span>
                                     <span class="project-info-div" style="width: 80%;">{{ item_1.workTitle }}</span>
                                     <img class="worksimg" src="@/assets/worktitle.jpg" alt="">
-                                    <span class="grade-1 student-info" >{{item_1.name}}</span>
+                                    <div class="grade-1 student-info" >{{item_1.name}}</div>
                                 </div>
                             </div>
                         </li>
@@ -42,11 +42,11 @@ export default {
 </script>
 
 <style>
-.page-title{
+/* .page-title{
     color: #CAF2FF;
     text-shadow: #00A3D5 0px 0px 8px;
     text-align: center;
-}
+} */
 .project-header-container{
     color: #CAF2FF;
     list-style-type: none;
@@ -58,13 +58,13 @@ export default {
     font-size: 20px;
     font-weight: bold;
 }
-.grid-container{
+/* .grid-container{
     margin: 0 auto;
     display:block;
     width: 100%;
     padding-bottom: 30px;
-}
-.project-info{
+} */
+/* .project-info{
     width: 100%;
     height: 100%;
     box-sizing: border-box;
@@ -99,13 +99,13 @@ export default {
     color: rgb(122, 224, 255);
     margin-bottom: 12px;
     padding: 5px;
-}
-.grade-1.student-info{
+} */
+.grade-1 .student-info{
     color: rgb(255, 204, 35);
     font-size: 11px;
     font-weight: bold;
 }
-.worksimg{
+/* .worksimg{
     width: 100%;
     border: solid 2px #CAF2FF;
     background-color: #CAF2FF20;
@@ -114,5 +114,5 @@ export default {
     font-size: 14px;
     margin: 10px auto;
     box-sizing: border-box;
-}
+} */
 </style>
