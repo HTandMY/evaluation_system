@@ -22,11 +22,12 @@ export default new Vuex.Store({
       state.visitorMessage = JSON.parse(localStorage.visitor)
     },
     readStudentData(state){
-      state.studentData = JSON.parse();
+      state.studentData = JSON.parse(localStorage.student);
     },
     setStudentId(state , message){
       state.visitorMessage.students = message.student;
       state.visitorMessage.groupName = message.groupName;
+      state.visitorMessage.grade = message.grade;
     }
   },
   //异步操作方法

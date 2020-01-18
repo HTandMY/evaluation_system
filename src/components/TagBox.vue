@@ -4,9 +4,9 @@
         v-model="tag"
         :tags="tags"
         :add-on-key="[13,32]"
-        :separators="[';', ',','　',' ']"
+        :separators="[ ';' , ',' , '、' ]"
         :maxlength='20'
-        placeholder="aaaa"
+        placeholder="例：素直、いつも笑顔"
         @tags-changed="newTags => tags = newTags"
     />
 </template>
@@ -27,5 +27,16 @@ export default {
 </script>
 
 <style>
-
+.vue-tags-input{
+    border-radius: 5px;
+    overflow: hidden;
+    max-width: 100%;
+}
+.vue-tags-input .ti-tag{
+    background-color: rgb(85, 140, 160);
+    font-size: 1rem;
+}
+.ti-new-tag-input-wrapper input {
+    font-size: 1rem;
+}
 </style>

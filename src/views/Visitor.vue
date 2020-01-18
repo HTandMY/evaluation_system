@@ -1,24 +1,27 @@
 <template>
-  <div>
-        <div><router-link tag="button" to="/" class="button">BACK</router-link></div>
+    <div>
+        <HeaderBox :buttonBackShow="false"/>
         <div>
             <div class="select_grade">
-                <router-link class="button grade2" tag="button" :to="{path : '/visitor/grade2'}"></router-link>
-                <router-link class="button grade1" tag="button" :to="{path : '/visitor/grade1'}"></router-link>
+                <router-link class="button grade2" active-class="grade2-active" tag="button" :to="{path : '/visitor/grade2'}">2年生</router-link>
+                <router-link class="button grade1" active-class="grade1-active" tag="button" :to="{path : '/visitor/grade1'}">1年生</router-link>
             </div>
-            <transition name="fade">
-                <router-view></router-view>
-            </transition>
+            <div class="student-list-box">
+                <transition name="fade">
+                    <router-view></router-view>
+                </transition>
+            </div>
         </div>
-  </div>
+    </div>
 </template>
 
 <script>
+import HeaderBox from "@/components/HeaderBox.vue"
 
 export default {
     name: 'visitor',
     components : {
-        
+        HeaderBox
     },
     data() {
         return {
@@ -30,7 +33,7 @@ export default {
             this.$router.push({ path: '/visitorsignin' })
         },
         readLocalStorage(){
-            if(localStorage.visitor == undefined){
+            if(!localStorage.visitor){
                 this.changeURL();
             }else{
                 this.$store.commit('readVisitorMessage');
@@ -47,61 +50,76 @@ export default {
 </script>
 
 <style>
-.button {
-    width: 150px;
-    height: 60px;
-}
 .select_grade{
     display: flex;
     padding: 0;
     justify-content: space-evenly;
+    margin: 20px 0;
+}
+.button {
+    width: 150px;
+    height: 60px;
+    background-size: 100% 100%;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: 'KaisoNext';
+    font-size: 18px;
+    transition: all 0.3s ease;
 }
 .button.grade2 {
-    background: url("./../assets/2ndyearstudents@2x.png") 50% 50%;
+    background: url("../assets/button_grade2_off.png");
     background-size: 100% 100%;
 }
 .button.grade1 {
-    background: url("./../assets/1styearstudents@2x.png") 50% 50%;   
-    background-size: 100% 100%;  
+    background: url("../assets/button_grade1_off.png"); 
+    background-size: 100% 100%;   
 }
-.button.actived {
-    background-size:105% 105%;
+.button.grade2-active {
+    background: url("../assets/button_grade2_on.png");
+    background-size: 100% 100%;
 }
-
+.button.grade1-active {
+    background: url("../assets/button_grade1_on.png");
+    background-size: 100% 100%;
+}
+.student-list-box{
+    width: 90%;
+    margin: 0 auto;
+}
 .page-title{
     color: #CAF2FF;
-    text-shadow: #00A3D5 0px 0px 8px;
-    text-align: center;
+    text-shadow: #CAF2FF 0px 0px 2px;
+    position: relative;
+    padding-left: 20px;
+}
+.page-title::before{
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    background-color: #CAF2FF;
+    left: 5px;
 }
 .project-info-div {
-    display: inline-block;
+    width: 80%;
     word-break: break-all;
     vertical-align: top;
     max-height: 110px;
-    line-height: 1.2rem;
+    line-height: 1.1rem;
     font-weight: bold;
+    height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-inline-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 .project-info{
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    border: solid 2px #CAF2FF;
-    background-color: #CAF2FF20;
-    box-shadow: #00A3D5 0px 0px 8px;
-    border-radius: 5px;
     font-size: 14px;
-    padding: 5px;
-}
-.student-info-container{
-    padding: 0;
-}
-.student-info{
-    font-size: 14px;
-    list-style-type: none;
-    font-weight: bold;
-    color: rgb(122, 224, 255);
-    margin-bottom: 12px;
-    padding: 5px;
 }
 .grid-container{
     margin: 0 auto;
@@ -124,16 +142,13 @@ export default {
     flex: 1;
     max-width: 50%;
     box-sizing: border-box;
-    padding: 5px;
+    padding: 10px 5px 15px 5px;
 }
 .worksimg{
     width: 100%;
-    border: solid 2px #CAF2FF;
-    background-color: #CAF2FF20;
-    box-shadow: #00A3D5 0px 0px 8px;
     border-radius: 5px;
     font-size: 14px;
-    margin: 10px auto;
+    margin: 5px auto;
     box-sizing: border-box;
 }
 

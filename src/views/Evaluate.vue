@@ -1,69 +1,81 @@
 <template>
-    <div class="content">
-        <a @click="$router.go(-1)">back</a>
-        <div>
-            <h1>{{evaluat.groupName}}</h1>
-            <div v-for="item in students" v-bind:key="item.id" class="info-member-name">{{item.name}}</div>
-            <div><img id="title_img" src="@/assets/worktitle.jpg" alt=""></div>
-        </div>
-        <div>
-            <h2>作品を評価してください<span class="required">※必須</span></h2>
+    <div>
+        <HeaderBox :buttonBackShow="true"/>
+        <div class="content">
+            <div class="grade-box">
+                <p class="grade-item" id="grade-1" v-if="grade == 1">1年 進級制作</p>
+                <p class="grade-item" id="grade-2" v-else>2年 卒業制作</p>
+            </div>
             <div>
-                <div class="project-box">
-                    <div class="project">企画力</div>
-                    <div class="project-item-box">
-                        <div class="project-item" v-for="index of 5" v-bind:key="index" ref="plan" v-on:click="setPoint('plan' , index)"></div>
-                    </div>
+                <div class="info-member-box">
+                    <span v-for="item in students" v-bind:key="item.id" class="info-member-name">{{item.name}}</span>
                 </div>
-                <div class="project-box">
-                    <div class="project">デザイン</div>
-                    <div class="project-item-box">
-                        <div class="project-item" v-for="index of 5" v-bind:key="index" ref="design" v-on:click="setPoint('design' , index)"></div>
-                    </div>
-                </div>
-                <div class="project-box">
-                    <div class="project">実装</div>
-                    <div class="project-item-box">
-                        <div class="project-item" v-for="index of 5" v-bind:key="index" ref="coding" v-on:click="setPoint('coding' , index)"></div>
-                    </div>
-                </div>
-                <div class="project-box">
-                    <div class="project">プレゼン力</div>
-                    <div class="project-item-box">
-                        <div class="project-item" v-for="index of 5" v-bind:key="index" ref="presentation" v-on:click="setPoint('presentation' , index)"></div>
-                    </div>
-                </div>
+                <h1>{{evaluat.groupName}}</h1>
             </div>
-            <h2>作品についてコメントがありましたら</h2>
-            <textarea id="comment" maxlength="128" v-model="evaluat.comment"></textarea>
-        </div>
-        <div>
-            <h2>プレゼンされた学生：</h2>
-            <div class="members">
-                <div class="members-member" v-for="item in students" v-bind:key="item.id" >
-                    <div class="member-box" v-on:click="selectStudent(item.id)">
-                        <div class="check-box" :class="{checked : selectedStudent[item.id]}" ref="name"></div><p class="member-name">{{item.name}}</p>
+            <div>
+                <h2>作品を評価してください<span class="required">※必須</span></h2>
+                <transition name="slide-fade" mode="out-in">
+                    <div v-if="showError" style="color:#ff8800;font-size:18px">
+                        タップして評価してください！
                     </div>
-                    <transition name="slide-fade" mode="out-in">
-                        <div v-if="selectedStudent[item.id]" class="tag-box">
-                            <p>この学生について、どんな印象を持ちましたか？</p>
-                            <TagBox :ref="'tag_' + item.id"/>
+                </transition>
+                <div>
+                    <div class="project-box">
+                        <div class="project">企画力</div>
+                        <div class="project-item-box">
+                            <div class="project-item" v-for="index of 5" v-bind:key="index" ref="plan" v-on:click="setPoint('plan' , index)"></div>
                         </div>
-                    </transition>
+                    </div>
+                    <div class="project-box">
+                        <div class="project">デザイン</div>
+                        <div class="project-item-box">
+                            <div class="project-item" v-for="index of 5" v-bind:key="index" ref="design" v-on:click="setPoint('design' , index)"></div>
+                        </div>
+                    </div>
+                    <div class="project-box">
+                        <div class="project">実装</div>
+                        <div class="project-item-box">
+                            <div class="project-item" v-for="index of 5" v-bind:key="index" ref="coding" v-on:click="setPoint('coding' , index)"></div>
+                        </div>
+                    </div>
+                    <div class="project-box">
+                        <div class="project">プレゼン力</div>
+                        <div class="project-item-box">
+                            <div class="project-item" v-for="index of 5" v-bind:key="index" ref="presentation" v-on:click="setPoint('presentation' , index)"></div>
+                        </div>
+                    </div>
+                </div>
+                <h2>作品についてコメントがありましたら</h2>
+                <textarea id="comment" maxlength="128" placeholder="テキストが入ります。来場者からのご意見・ご感想が入ります。" v-model="evaluat.comment"></textarea>
+            </div>
+            <div>
+                <h2>プレゼンされた学生：</h2>
+                <div class="members">
+                    <div class="members-member" v-for="item in students" v-bind:key="item.id" >
+                        <div class="member-box" v-on:click="selectStudent(item.id)">
+                            <div class="check-box" :class="{checked : selectedStudent[item.id]}" ref="name"></div><p class="member-name">{{item.name}}</p>
+                        </div>
+                        <transition name="slide-fade" mode="out-in">
+                            <div v-if="selectedStudent[item.id]" class="tag-box">
+                                <p>この学生について、どんな印象を持ちましたか？</p>
+                                <TagBox :ref="'tag_' + item.id"/>
+                            </div>
+                        </transition>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="button-box">
-            <button v-on:click="sendMessage()">送信</button>
-        </div>
-        <transition name="scale">
-            <div class="messageBox" v-if="showMessage">
-                <div id="messageBox_1">
-                    <p id="message">{{ message }}</p>
-                    <button v-on:click="closeMessageBox()">閉じる</button>
-                </div>
+            <div class="button-box">
+                <button v-on:click="sendMessage()">送信<img src="@/assets/button_send_icon.png" alt=""></button>
             </div>
-        </transition>
+            <transition name="scale">
+                <div class="messageBox" v-if="showMessage">
+                    <div id="messageBox_1">
+                        <p id="message">{{ message }}</p>
+                        <button v-if="showSuccess" v-on:click="$router.push({ path: '/visitor' })">作品一覧へ</button>
+                    </div>
+                </div>
+            </transition>
+        </div>
     </div>
 </template>
 
@@ -71,30 +83,35 @@
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 import TagBox from "@/components/TagBox.vue"
+import HeaderBox from "@/components/HeaderBox.vue"
+
 export default {
     name : 'evaluate',
     components: {
         TagBox,
+        HeaderBox
     },
     data() {
         return {
+            grade : 1,
             evaluat : {},
             students : [],
             selectedStudent : {},
             message : "",
+            showError : false,
             showMessage : false,
-            success : false
+            showSuccess : false
         }
     },
     methods: {
         readVisitorData(){
-            this.data = this.$store.state.visitorMessage;
+            this.grade = this.$store.state.visitorMessage.grade;
             this.students = this.$store.state.visitorMessage.students;
             this.evaluat = Object.assign({}, this.evaluat, {
                 groupName: this.$store.state.visitorMessage.groupName,
                 occupation: this.$store.state.visitorMessage.occupation
             });
-            if(this.data.job){
+            if(this.$store.state.visitorMessage.job){
                 this.evaluat = Object.assign({}, this.evaluat, {
                     job: this.$store.state.visitorMessage.job
                 });
@@ -113,6 +130,7 @@ export default {
             }
         },
         setPoint(projectName , num){
+            this.showError = false;
             for(let i = 0 ; i < 5 ; i++){
                 this.$refs[projectName][i].style.background = "transparent";
             }
@@ -164,22 +182,12 @@ export default {
                     firebase.database().ref("students").update(updates);
                 })
                 .then(function(){
-                    self.showMessage = true;
-                    self.success = true;
+                    self.showSuccess = true;
                     //評価成功した表示されるメッセージ
-                    self.message = "評価しました"
+                    self.message = "評価しました！"
                 });
             }else{
-                this.showMessage = true;
-                //ポイントしない表示されるメッセージ
-                this.message = "作品を評価してください"
-            }
-        },
-        closeMessageBox(){
-            if(this.success){
-                this.$router.push({ path: '/visitor' });
-            }else{
-                this.showMessage = false
+                this.showError = true;
             }
         }
     },
@@ -200,6 +208,24 @@ export default {
         color: #ffffff;
         text-align: center;
     }
+    .grade-box{
+        margin: 20px 0;
+    }
+    .grade-item{
+        width: 120px;
+        height: 30px;
+        text-align: center;
+        margin: 0 auto;
+        color: #fff;
+        border-radius: 5px;
+        line-height: 30px;
+    }
+    #grade-1{
+        background-color: #FF9E1E
+    }
+    #grade-2{
+        background-color: #54B5D4
+    }
     h2 {
         color: #ffffff;
         position: relative;
@@ -207,11 +233,17 @@ export default {
     #title_img {
         width: 100%;
     }
-    .info-member-name {
+    .info-member-box{
         color: #ffffff;
+    }
+    .info-member-name {
         text-align: center;
-        margin-bottom: 5px;
+        padding: 0 7px 0 5px;
         font-weight: bold;
+        border-right: 2px solid #fff; 
+    }
+    .info-member-name:last-child{
+        border-right:none;
     }
     .members{
         transition: all 0.3s;
@@ -294,6 +326,7 @@ export default {
         border-radius: 5px;
         background-color: #fff;
         border: 1px solid #ccc;
+        font-family: 'SmartPhoneUI';
         font-size: 16px;
         padding: 5px;
         box-sizing: border-box;
@@ -303,27 +336,71 @@ export default {
         padding: 20px 0;
         text-align: center;
     }
+    .button-box button {
+        position: relative;
+        margin: 20px 0;
+        width: 215px;
+        height: 70px;
+        background-image: url("../assets/button_send_off.png");
+        background-size: 100% 100%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: #fff;
+        font-family: 'KaisoNext';
+        font-size: 22px;
+    }
+    .button-box button:active{
+        background-image: url("../assets/button_send_on.png");
+        background-size: 100% 100%;
+    }
+    .button-box img {
+        width: 16px;
+        position: relative;
+        margin-left: 5px;
+    }
     .messageBox{
         position: fixed;
         left: 0;
         top: 0;
         width: 100vw;
         height: 100vh;
-        background-color: rgba(0, 0, 0, 0.7);
+        background: url('../assets/bg1000×1000.png') 50% 50%;
+        background-repeat: repeat-y;
+        background-size: cover;
         text-align: center;
-        
+        z-index: 20;
     }
     #message {
         color: #ffffff;
+        margin: 50px;
+        font-size: 22px;
     }
     #messageBox_1 {
         position: absolute;
+        width: 90%;
         top: 50%;
         left: 50%;
+        -webkit-transform: translate(-50% , -50%);
         transform: translate(-50% , -50%);
+        border: 2px solid #CAF2FF;
+        border-radius: 5px;
+        background-color: rgba(202,242,255,0.2);
+        box-shadow: #00A3D5 0 0 4px;
     }
-    #messageBox_1 button {
-        margin: 20px 0;
+    #messageBox_1 button{
+        margin: 20px 0 40px 0;
+        width: 215px;
+        height: 70px;
+        background-image: url("../assets/button_job_off.png");
+        background-size: 100% 100%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: #fff;
+        font-family: 'KaisoNext';
+        font-size: 22px;
+
     }
 
     .scale-enter-active {

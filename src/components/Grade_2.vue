@@ -5,17 +5,12 @@
             <ul class="project-info-container">
                 <li v-for="(item , index) in studentData.groups.grade_2" v-bind:key="index.groupName">
                     <div class="project-info">
-                        <div v-on:click="setStudentData(item.members , item.workTitle)">
-                            <div>
-                                <div class="project-info-div" style="width: 20%; font-size: 18px; margin-bottom: 10px; text-align: center; color: rgb(74, 202, 241);">{{ item.boothNumber }}</div>
-                                <div class="project-info-div" style="width: 80%;">{{ item.workTitle }}</div>
+                        <div v-on:click="setStudentData(item.members , item.workTitle , 2)">
+                            <div class="project-info-box">
+                                <div class="project-info-num">{{ item.boothNumber }}</div>
+                                <div class="project-info-div">{{ item.workTitle }}</div>
                             </div> 
                             <div><img class="worksimg" src="@/assets/worktitle.jpg" alt=""></div>
-                            <ul class="student-info-container">
-                                <li class="student-info" v-for="item_1 in item.members" v-bind:key="item_1.id">
-                                    {{ item_1.name }}
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </li>
@@ -34,8 +29,8 @@ export default {
         }
     },
     methods: {
-        setStudentData(id , workTitle){
-            this.$store.commit('setStudentId' , {student : id , groupName : workTitle});
+        setStudentData(id , workTitle , gradeNum){
+            this.$store.commit('setStudentId' , {student : id , groupName : workTitle , grade : gradeNum});
             this.$router.push({ path: '/evaluate' });
         }
     },
@@ -43,6 +38,17 @@ export default {
 </script>
 
 <style>
-/* display: grid;
-grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
+.project-info-box{
+    position: relative;
+}
+.project-info-num {
+    position: relative;
+    top: -6px;
+    font-family: 'KaisoNext';
+    display: inline-block;
+    width: 20%;
+    font-size: 28px;
+    text-align: center;
+    color: rgb(74, 202, 241);
+}
 </style>

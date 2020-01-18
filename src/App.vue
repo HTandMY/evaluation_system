@@ -44,6 +44,7 @@ body{
   height: 100%;
   min-height: 100vh;
   background-attachment: fixed;
+  background-size: cover;
 }
 
 #app {
