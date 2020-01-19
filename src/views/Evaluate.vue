@@ -157,6 +157,7 @@ export default {
                 let commentsNum = [];
                 let updates = {};
 
+
                 self.showMessage = true;
                 self.message = "送信中。。。"
 
@@ -171,6 +172,7 @@ export default {
                     }
                     console.log(self.selectedStudent)
                 }).then(function(){
+                    self.$set(self.evaluat , "time" , self.getTime());
                     for(let i in self.students){
                         updates[self.students[i].id + "/comments/" + commentsNum[i]] = self.evaluat;
                     }
@@ -189,9 +191,26 @@ export default {
             }else{
                 this.showError = true;
             }
+        },
+        getTime(){
+            let time = new Date();
+            let y = time.getFullYear();
+            let m = time.getMonth() + 1;
+            let d = time.getDate();
+            let h = time.getHours();
+            let mm = time.getMinutes();
+            if(h < 10){
+                h = "0" + h;
+            }
+            if(mm < 10){
+                mm = "0" + mm;
+            }
+
+            time = y + "/" + m  + "/" + d + " " + h + "：" + mm;
+            return time;
         }
     },
-    mounted() {
+    mounted(){
         this.readVisitorData();
     }
 }

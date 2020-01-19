@@ -1,51 +1,46 @@
 <template>
     <div>
-        <div v-if="comments.length > 0">
-            <div v-for="(item , index) in comments" :key="index">
-                {{ item.occupation }}
-            </div>
+        <div>
+            <transition name="fade">
+                <router-view
+                    :studentData="studentData"
+                />
+            </transition>
         </div>
-        <div v-if="tags.length > 0">
-            <div v-for="(item , index) in tags" :key="index">
-                {{ item }}
-            </div>
-        </div>
-
+        <TabBar/>
     </div>
 </template>
 
 <script>
+import TabBar from '@/components/TabBar.vue'
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 
 export default {
     name: 'student',
+    components: {
+        TabBar
+    },
     data() {
         return {
-            worktitle : [],
-            comments : [],
-            tags :[],
+            studentData : {
+                comments : [],
+                tags : {
+                    others : []
+                },
+                // worktitle : []
+            }
         }
     },
     methods: {
         setStudentData(){
             let self = this;
             let ref = firebase.database().ref("students/" + self.$store.state.studentData.id).on("value" , function(data){
-                self.worktitle = data.val().worktitle;
                 self.reSetStudentData(data.val());
             });
         },
         reSetStudentData(data){
-            if(data.comments){
-                for(let i in data.comments){
-                    this.$set(this.comments, i , data.comments[i]);
-                }
-            }
-            if(data.tags.others){
-                for(let i in data.tags.others){
-                    this.$set(this.tags, i , data.tags.others[i]);
-                }
-            }
+            this.studentData = Object.assign({} , data);
         },
         readLocalStorage(){
             if(!localStorage.student){
@@ -66,5 +61,14 @@ export default {
 </script>
 
 <style>
-
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .3s;
+}
+.fade-enter-active {
+  transition-delay: .3s;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
 </style>

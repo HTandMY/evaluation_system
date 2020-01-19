@@ -10,6 +10,9 @@ const Evaluate = () => import('./views/Evaluate.vue');
 
 const Grade_2 = () => import('./components/Grade_2.vue');
 const Grade_1 = () => import('./components/Grade_1.vue');
+const CommentsPage = () => import('@/components/CommentsPage.vue');
+const TagsPage = () => import('@/components/TagsPage.vue');
+const RecommendPage = () => import('@/components/RecommendPage.vue');
 
 Vue.use(Router)
 
@@ -52,6 +55,24 @@ const router = new Router({
     {
       path: '/student',
       component : Student,
+      children:[
+        {
+          path: '/',
+          redirect: 'comments'
+        },
+        {
+          path: 'comments',
+          component: CommentsPage
+        },
+        {
+          path: 'tags',
+          component: TagsPage
+        },
+        {
+          path: 'recommend',
+          component: RecommendPage
+        }
+      ],
       meta : {title: '評価システム | 学生ページ'}
     },
     {
