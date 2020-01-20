@@ -95,7 +95,7 @@ export default {
     position: relative;
     padding-left: 20px;
     width: 90%;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 .page-title::before{
     content: "";
