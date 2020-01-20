@@ -73,7 +73,7 @@ export default {
     padding: 0;
 }
 .project-header > div {
-    padding: 20px 0 0 5px;
+    padding: 20px 0 10px 10px;
     font-size: 25px;
     font-weight: bold;
 }

@@ -85,7 +85,7 @@ export default {
     background-size: 100% 100%;
 }
 .student-list-box{
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     max-width: 768px;
 }
@@ -94,6 +94,8 @@ export default {
     text-shadow: #CAF2FF 0px 0px 2px;
     position: relative;
     padding-left: 20px;
+    width: 90%;
+    margin: 0 auto;
 }
 .page-title::before{
     content: "";
