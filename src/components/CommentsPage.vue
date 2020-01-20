@@ -55,6 +55,7 @@ export default {
 .comments-box{
     width: 90%;
     margin: 0 auto;
+    padding-bottom: 60px;
 }
 .comments-box .name {
     text-align: center;

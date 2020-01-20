@@ -15,7 +15,7 @@
             <div>
                 <h2>作品を評価してください<span class="required">※必須</span></h2>
                 <transition name="slide-fade" mode="out-in">
-                    <div v-if="showError" style="color:#ff8800;font-size:18px">
+                    <div class="error-box" v-if="showError">
                         タップして評価してください！
                     </div>
                 </transition>
@@ -420,6 +420,14 @@ export default {
         font-family: 'KaisoNext';
         font-size: 22px;
 
+    }
+    .error-box{
+        color:#fff;
+        font-size:18px;
+        background-color: rgb(255, 136, 0);
+        padding: 4px;
+        border-radius: 4px;
+        display: inline-block;
     }
 
     .scale-enter-active {

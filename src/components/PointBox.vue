@@ -1,5 +1,5 @@
 <template>
-    <div class="point">
+    <div>
         <h3 class="point-title">
             {{ worktitle[selectNum] }}
         </h3>
@@ -135,10 +135,8 @@ export default {
 </script>
 
 <style>
-.point{
-    margin-bottom: 80px;
-}
-.point .point-title{
+
+.point-title{
     text-align: center;
     color: #fff;
     font-family: 'SmartPhoneUI';
@@ -150,7 +148,7 @@ export default {
 }
 .point-box .point-all-box p {
     position: relative;
-    top: 20px;
+    top: 10px;
     font-size: 20px;
     color: #fff;
     margin: 0;
