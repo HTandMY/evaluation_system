@@ -54,7 +54,8 @@ export default {
     display: flex;
     padding: 0;
     justify-content: space-evenly;
-    margin: 20px 0;
+    margin: 20px auto;
+    max-width: 768px;
 }
 .button {
     width: 150px;
@@ -86,6 +87,7 @@ export default {
 .student-list-box{
     width: 90%;
     margin: 0 auto;
+    max-width: 768px;
 }
 .page-title{
     color: #CAF2FF;
@@ -131,18 +133,21 @@ export default {
     padding: 0;
     margin: 0 ;
     list-style-type: none;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    /* display: flex;
     flex-wrap: wrap ;
-    justify-content: flex-start;
+    justify-content: flex-start; */
 }
 .project-info-container > li {
+    color: #fff;
+    box-sizing: border-box;
+    padding: 8px;
+    /* padding: 10px 5px 15px 5px;
     min-width: 140px;
     min-height: 150px;
-    color: #fff;
-    flex: 1;
     max-width: 50%;
-    box-sizing: border-box;
-    padding: 10px 5px 15px 5px;
+    flex: 1; */
 }
 .worksimg{
     width: 100%;

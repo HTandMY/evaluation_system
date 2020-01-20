@@ -220,6 +220,7 @@ export default {
     .content{
         width: 90%;
         margin: 0 auto;
+        max-width: 768px;
     }
     .content h1 {
         margin: 0;

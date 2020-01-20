@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="point-comments-box">
-                <div v-for="(item , index) in comments" :key="index">
+                <div v-for="(item , index) in reverseComments" :key="index">
                     <div v-if="item.groupName == worktitle[selectNum]" class="point-comments-item">
                         <div class="point-comments-item-title">
                             <p class="point-comments-item-job">{{ item.job || item.occupation }}</p>
@@ -118,6 +118,11 @@ export default {
     computed: {
         getAll(){
             return this.coding + this.design + this.plan + this.presentation;
+        },
+        reverseComments(){
+            if(this.comments){
+                return this.comments.reverse();
+            }
         }
     },
     watch: {
