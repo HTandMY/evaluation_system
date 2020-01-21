@@ -36,50 +36,48 @@
                 </div>
             </div>
             <div class="point-comments-box">
-                <div v-for="(item , index) in reverseComments" :key="index">
-                    <div v-if="item.groupName == worktitle[selectNum]" class="point-comments-item">
-                        <div class="point-comments-item-title">
-                            <p class="point-comments-item-job">{{ item.job || item.occupation }}</p>
-                            <p class="point-comments-item-time">{{ item.time }}</p>
-                        </div>
-                        <div class="point-comments-item-box">
-                            <div class="comments-item">
-                                <img src="@/assets/icon_plan.png" alt="">
-                                <p>企画</p>
-                                <div class="comments-item-box">
-                                    <span class="comments-item-point" v-for="i in 5" :key="i" :class="{point : i <= item.plan }"></span>
-                                    <span class="comments-item-text">{{ item.plan }}</span>
-                                </div>
-                            </div>
-                            <div class="comments-item">
-                                <img src="@/assets/icon_design.png" alt="">
-                                <p>デザイン</p>
-                                <div class="comments-item-box">
-                                    <span class="comments-item-point" v-for="i in 5" :key="i" :class="{point : i <= item.design }"></span>
-                                    <span class="comments-item-text">{{ item.design }}</span>
-                                </div>
-                            </div>
-                            <div class="comments-item">
-                                <img src="@/assets/icon_coding.png" alt="">
-                                <p>実装</p>
-                                <div class="comments-item-box">
-                                    <span class="comments-item-point" v-for="i in 5" :key="i" :class="{point : i <= item.coding }"></span>
-                                    <span class="comments-item-text">{{ item.coding }}</span>
-                                </div>
-                            </div>
-                            <div class="comments-item">
-                                <img src="@/assets/icon_presentation.png" alt="">
-                                <p>プレゼン</p>
-                                <div class="comments-item-box">
-                                    <span class="comments-item-point" v-for="i in 5" :key="i" :class="{point : i <= item.presentation }"></span>
-                                    <span class="comments-item-text">{{ item.presentation }}</span>
-                                </div>
+                <div v-for="(item , index) in selectedWorks" :key="index" class="point-comments-item">
+                    <div class="point-comments-item-title">
+                        <p class="point-comments-item-job">{{ item.job || item.occupation }}</p>
+                        <p class="point-comments-item-time">{{ item.time }}</p>
+                    </div>
+                    <div class="point-comments-item-box">
+                        <div class="comments-item">
+                            <img src="@/assets/icon_plan.png" alt="">
+                            <p>企画</p>
+                            <div class="comments-item-box">
+                                <span class="comments-item-point" v-for="i in 5" :key="i" :class="{point : i <= item.plan }"></span>
+                                <span class="comments-item-text">{{ item.plan }}</span>
                             </div>
                         </div>
-                        <div v-if="item.comment" class="comment-box">
-                            <div class="comment-box-title">メッセージ：</div>
-                            <div class="comment-box-content" style="white-space: pre-line;">{{ item.comment }}</div>
+                        <div class="comments-item">
+                            <img src="@/assets/icon_design.png" alt="">
+                            <p>デザイン</p>
+                            <div class="comments-item-box">
+                                <span class="comments-item-point" v-for="i in 5" :key="i" :class="{point : i <= item.design }"></span>
+                                <span class="comments-item-text">{{ item.design }}</span>
+                            </div>
                         </div>
+                        <div class="comments-item">
+                            <img src="@/assets/icon_coding.png" alt="">
+                            <p>実装</p>
+                            <div class="comments-item-box">
+                                <span class="comments-item-point" v-for="i in 5" :key="i" :class="{point : i <= item.coding }"></span>
+                                <span class="comments-item-text">{{ item.coding }}</span>
+                            </div>
+                        </div>
+                        <div class="comments-item">
+                            <img src="@/assets/icon_presentation.png" alt="">
+                            <p>プレゼン</p>
+                            <div class="comments-item-box">
+                                <span class="comments-item-point" v-for="i in 5" :key="i" :class="{point : i <= item.presentation }"></span>
+                                <span class="comments-item-text">{{ item.presentation }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="item.comment" class="comment-box">
+                        <div class="comment-box-title">メッセージ：</div>
+                        <div class="comment-box-content" style="white-space: pre-line;">{{ item.comment }}</div>
                     </div>
                 </div>
             </div>
@@ -123,6 +121,12 @@ export default {
             if(this.comments){
                 return this.comments.reverse();
             }
+        },
+        selectedWorks(){
+            let self = this;
+            return this.reverseComments.filter(function(item){
+                return item.groupName == self.worktitle[self.selectNum]
+            });
         }
     },
     watch: {

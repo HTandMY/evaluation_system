@@ -399,6 +399,7 @@ export default {
     #messageBox_1 {
         position: absolute;
         width: 90%;
+        max-width: 768px;
         top: 50%;
         left: 50%;
         -webkit-transform: translate(-50% , -50%);
