@@ -1,18 +1,63 @@
 <template>
-    <div>
-        <div></div>
-        <div></div>
-        <div></div>
+    <div class="tags-others-tags-box">
+        <div v-for="item in tags_Others" :key="item" class="tags-others">{{ item }}</div>
     </div>
 </template>
 
 <script>
 export default {
     name: 'TagOthers',
-    props : ['text']
+    props : ['tagsData'],
+    data() {
+        return {
+            tags_Others : []
+        }
+    },
+    methods: {
+        setTagsOthers(){
+
+        }
+    },
+    computed: {
+        
+    },
+    watch: {
+        tagsData(){
+            this.setTagsOthers();
+        }
+    },
 }
 </script>
 
 <style>
-
+.tags-others{
+    display: inline-block;
+    position: relative;
+    padding: 10px 5px;
+    background-image: url("../assets/tag_others_02.png");
+    margin: 8px 25px;
+    font-size: 15px;
+    font-family: 'SmartPhoneUI';
+    color: #fff;
+}
+.tags-others::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 20px;
+    top: 0;
+    left: -19px;
+    background-image: url("../assets/tag_others_01.png");
+    background-size: 100% 100%;
+}
+.tags-others::after{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 15px;
+    top: 0;
+    right: -14px;
+    background-image: url("../assets/tag_others_03.png");
+    background-size: 100% 100%;
+}
 </style>

@@ -7,12 +7,13 @@ const VisitorSignin = () => import('./views/VisitorSignin.vue');
 const Student = () => import('./views/Student.vue');
 const StudentSignin = () => import('./views/StudentSignin.vue');
 const Evaluate = () => import('./views/Evaluate.vue');
+const CommentsPage = () => import('@/views/CommentsPage.vue');
+const TagsPage = () => import('@/views/TagsPage.vue');
+const RecommendPage = () => import('@/views/RecommendPage.vue');
 
 const Grade_2 = () => import('./components/Grade_2.vue');
 const Grade_1 = () => import('./components/Grade_1.vue');
-const CommentsPage = () => import('@/components/CommentsPage.vue');
-const TagsPage = () => import('@/components/TagsPage.vue');
-const RecommendPage = () => import('@/components/RecommendPage.vue');
+
 
 Vue.use(Router)
 
