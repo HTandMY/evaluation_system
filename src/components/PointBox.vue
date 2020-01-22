@@ -119,7 +119,10 @@ export default {
         },
         reverseComments(){
             if(this.comments){
-                return this.comments.slice().reverse();
+                let comments = this.comments.slice().reverse();
+                return comments;
+            }else{
+                return [];
             }
         },
         selectedWorks(){

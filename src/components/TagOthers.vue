@@ -16,8 +16,11 @@ export default {
     methods: {
         setTagsOthers(){
             this.tags_Others = [];
-            let tags = this.tagsData.slice().reverse();
-            let self = this;
+            let tags = []
+            if(this.tagsData){
+                tags = this.tagsData.slice().reverse();
+            }
+
             loop: 
             for(let i in tags){
                 for(let j in this.tags_Others){
