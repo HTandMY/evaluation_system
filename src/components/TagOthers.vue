@@ -1,6 +1,6 @@
 <template>
     <div class="tags-others-tags-box">
-        <div v-for="item in tags_Others" :key="item" class="tags-others">{{ item }}</div>
+        <div v-for="item in tags_Others" :key="item.tag" class="tags-others">{{ item.num > 1 ? item.tag + " (" + item.num + ")" : item.tag}}</div>
     </div>
 </template>
 
@@ -15,16 +15,39 @@ export default {
     },
     methods: {
         setTagsOthers(){
-
+            this.tags_Others = [];
+            let tags = this.tagsData.slice().reverse();
+            let self = this;
+            loop: 
+            for(let i in tags){
+                for(let j in this.tags_Others){
+                    if(this.tagsData[i] == this.tags_Others[j].tag){
+                        let number = this.tags_Others[j].num + 1;
+                        this.tags_Others.splice(j , 1);
+                        this.tags_Others.unshift({tag : this.tagsData[i] , num : number})
+                        continue loop;
+                    }
+                }
+                this.tags_Others.unshift({tag : this.tagsData[i] , num : 1}); 
+            }
         }
     },
     computed: {
-        
+        tagNum(tag){
+            if(tag.num > 1){
+                return tag.tag + "(" + tag.num + ")"
+            }else{
+                return tag.tag
+            }
+        }
     },
     watch: {
         tagsData(){
             this.setTagsOthers();
         }
+    },
+    mounted() {
+        this.setTagsOthers();
     },
 }
 </script>

@@ -58,4 +58,8 @@ export default {
     max-width: 768px;
     padding-bottom: 60px;
 }
+.tags-own-title , .tags-others-title {
+    color: #fff;
+    text-align: center;
+}
 </style>

@@ -119,7 +119,7 @@ export default {
         },
         reverseComments(){
             if(this.comments){
-                return this.comments.reverse();
+                return this.comments.slice().reverse();
             }
         },
         selectedWorks(){
