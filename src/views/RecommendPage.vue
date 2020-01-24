@@ -3,6 +3,9 @@
         <div class="recommend-title">
             <img src="@/assets/title_recommend.png" alt="">
         </div>
+        <div>
+            <h1>あなたを紹介した学生</h1>
+        </div>
     </div>
 </template>
 
