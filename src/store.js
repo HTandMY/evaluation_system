@@ -26,8 +26,9 @@ export default new Vuex.Store({
     },
     setStudentId(state , message){
       state.visitorMessage.students = message.student;
-      state.visitorMessage.groupName = message.groupName;
+      state.visitorMessage.boothNumber = message.boothNumber;
       state.visitorMessage.grade = message.grade;
+      state.visitorMessage.workTitle = message.workTitle;
     }
   },
   //异步操作方法

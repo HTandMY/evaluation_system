@@ -5,7 +5,7 @@
             <ul class="project-info-container">
                 <li v-for="(item , index) in studentData.groups.grade_2" v-bind:key="index.groupName">
                     <div class="project-info">
-                        <div v-on:click="setStudentData(item.members , item.workTitle , 2)">
+                        <div v-on:click="setStudentData(item.members , item.boothNumber , 2 , item.workTitle)">
                             <div class="project-info-box">
                                 <div class="project-info-num">{{ item.boothNumber }}</div>
                                 <div class="project-info-div">{{ item.workTitle }}</div>
@@ -29,8 +29,8 @@ export default {
         }
     },
     methods: {
-        setStudentData(id , workTitle , gradeNum){
-            this.$store.commit('setStudentId' , {student : id , groupName : workTitle , grade : gradeNum});
+        setStudentData(id , boothNumber , gradeNum , workTitle){
+            this.$store.commit('setStudentId' , {student : id , boothNumber : boothNumber , grade : gradeNum , workTitle : workTitle});
             this.$router.push({ path: '/evaluate' });
         }
     },

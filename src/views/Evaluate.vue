@@ -10,7 +10,7 @@
                 <div class="info-member-box">
                     <span v-for="item in students" v-bind:key="item.id" class="info-member-name">{{item.name}}</span>
                 </div>
-                <h1>{{evaluat.groupName}}</h1>
+                <h1>{{workTitle}}</h1>
             </div>
             <div>
                 <h2>作品を評価してください<span class="required">※必須</span></h2>
@@ -96,6 +96,7 @@ export default {
             grade : 1,
             evaluat : {},
             students : [],
+            workTitle : "",
             selectedStudent : {},
             message : "",
             showError : false,
@@ -107,8 +108,9 @@ export default {
         readVisitorData(){
             this.grade = this.$store.state.visitorMessage.grade;
             this.students = this.$store.state.visitorMessage.students;
+            this.workTitle = this.$store.state.visitorMessage.workTitle;
             this.evaluat = Object.assign({}, this.evaluat, {
-                groupName: this.$store.state.visitorMessage.groupName,
+                boothNumber: this.$store.state.visitorMessage.boothNumber,
                 occupation: this.$store.state.visitorMessage.occupation
             });
             if(this.$store.state.visitorMessage.job){
@@ -260,6 +262,7 @@ export default {
         text-align: center;
         padding: 0 7px 0 5px;
         font-weight: bold;
+        font-size: 15px;
         border-right: 2px solid #fff; 
     }
     .info-member-name:last-child{

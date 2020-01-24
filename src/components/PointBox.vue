@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3 class="point-title">
-            {{ worktitle[selectNum] }}
+            {{ worktitle[selectNum].worktitle }}
         </h3>
         <div class="point-box">
             <div class="point-all-box">
@@ -128,7 +128,7 @@ export default {
         selectedWorks(){
             let self = this;
             return this.reverseComments.filter(function(item){
-                return item.groupName == self.worktitle[self.selectNum]
+                return item.boothNumber == self.worktitle[self.selectNum].boothnumber;
             });
         }
     },

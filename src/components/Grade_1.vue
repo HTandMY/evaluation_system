@@ -8,7 +8,7 @@
                     <ul class="project-info-container">
                         <li v-for="item_1 in item" v-bind:key="item_1.id">
                             <div class="project-info">
-                                <div v-on:click="setStudentData(item_1.id , item_1.name , item_1.workTitle , 1)">
+                                <div v-on:click="setStudentData(item_1.id , item_1.name , item_1.boothNumber , 1 , item_1.workTitle)">
                                     <div class="project-info-num" id="project-info-num-1">{{ item_1.boothNumber }}</div>
                                     <div class="project-info-div">{{ item_1.workTitle }}</div>
                                     <img class="worksimg" src="@/assets/worktitle.jpg" alt="">
@@ -33,8 +33,8 @@ export default {
         }
     },
     methods: {
-        setStudentData(id , name , workTitle , gradeNum){
-            this.$store.commit('setStudentId' , {student : [{id : id , name : name}] , groupName : workTitle , grade : gradeNum});
+        setStudentData(id , name , boothNumber , gradeNum , workTitle){
+            this.$store.commit('setStudentId' , {student : [{id : id , name : name}] , boothNumber : boothNumber , grade : gradeNum , workTitle : workTitle});
             this.$router.push({ path: '/evaluate' });
         }
     },
