@@ -1,4 +1,5 @@
 <template>
+    <Header>
     <div id="header-box-out">
         <div id="logo-box">
             <img src="@/assets/logo.png" alt="">
@@ -8,6 +9,7 @@
             <img src="@/assets/button_back.png" alt="" srcset="">
         </div>
     </div>
+    </Header>
 </template>
 
 <script>

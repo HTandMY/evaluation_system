@@ -103,13 +103,11 @@ export default {
             this.design = 0;
             this.plan = 0;
             this.presentation = 0;
-            for(let i in this.comments){
-                if(this.comments[i].groupName == this.worktitle[this.selectNum]){
-                    this.coding += this.comments[i].coding;
-                    this.design += this.comments[i].design;
-                    this.plan += this.comments[i].plan;
-                    this.presentation += this.comments[i].presentation;
-                }
+            for(let i in this.selectedWorks){
+                this.coding += this.selectedWorks[i].coding;
+                this.design += this.selectedWorks[i].design;
+                this.plan += this.selectedWorks[i].plan;
+                this.presentation += this.selectedWorks[i].presentation;
             }
         }
     },
