@@ -190,19 +190,22 @@
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "武蔵野園サイト",
                 "members" : [{"id" : "18aw0106", "name" : "大場 吉樹"}],
-                "boothNumber" : "01"
+                "boothNumber" : "01",
+                "id": "18aw0106"
             },
             {
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "THE DUBLINERS' IRISH PUBセルフオーダーシステムのUIデザイン",
                 "members" : [{"id" : "18aw0112", "name" : "齋藤 香織"}],
-                "boothNumber" : "02"
+                "boothNumber" : "02",
+                "id": "18aw0112"
             },
             {
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "株式会社Dice　リニューアルサイト",
                 "members" : [{"id" : "18aw0104", "name" : "井原 蒼尉"}],
-                "boothNumber" : "03"
+                "boothNumber" : "03",
+                "id": "18aw0104"
             },
             {
                 "groupName" : "卒業制作_告知サイト",
@@ -211,7 +214,8 @@
                     {"id" : "18aw0124", "name" : "楊 詩俞"},
                     {"id" : "18aw0130", "name" : "橋本 輝瑠"}
                 ],
-                "boothNumber" : "04"
+                "boothNumber" : "04",
+                "id": "18aw0130"
             },
             {
                 "groupName" : "卒業制作_評価システム",
@@ -228,13 +232,15 @@
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "学習塾「リアリサール」リニューアルサイト",
                 "members" : [{"id" : "18aw0117", "name" : "須永 和徳"}],
-                "boothNumber" : "06"
+                "boothNumber" : "06",
+                "id": "18aw0117"
             },
             {
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "よくばり秩父街道",
                 "members" : [{"id" : "18aw0123", "name" : "山中 翔平"}],
-                "boothNumber" : "07"
+                "boothNumber" : "07",
+                "id": "18aw0123"
             },
             {
                 "groupName" : "卒業制作_個人",
@@ -247,25 +253,29 @@
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "トータルデザイン",
                 "members" : [{"id" : "18aw0124", "name" : "楊 詩俞"}],
-                "boothNumber" : "09"
+                "boothNumber" : "09",
+                "id": "18aw0124"
             },
             {
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "メンズファッションブランド「MISTERGENTLEMAN」リニューアルサイト",
                 "members" : [{"id" : "18aw0122", "name" : "フレハス ジョシュア カイル"}],
-                "boothNumber" : "10"
+                "boothNumber" : "10",
+                "id": "18aw0122"
             },
             {
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "東京都専門学校バドミントン連盟リニューアルサイト",
                 "members" : [{"id" : "18aw0121", "name" : "藤本 航平"}],
-                "boothNumber" : "11"
+                "boothNumber" : "11",
+                "id": "18aw0121"
             },
             {
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "カフェ＆バー「アンドット」リニューアルサイト",
                 "members" : [{"id" : "18aw0111", "name" : "金 京姫"}],
-                "boothNumber" : "12"
+                "boothNumber" : "12",
+                "id": "18aw0111"
             },
             {
                 "groupName" : "卒業制作_教育プログラミング",
@@ -274,31 +284,36 @@
                     {"id" : "18aw0102", "name" : "旭 和佳"},
                     {"id" : "18aw0119", "name" : "ティハ トーン ナイン"}
                 ],
-                "boothNumber" : "13"
+                "boothNumber" : "13",
+                "id": "18aw0102"
             },
             {
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "日本電専門学校　図書室・ライセンスセンターサイト",
                 "members" : [{"id" : "18aw0109", "name" : "神原 美紗希"}],
-                "boothNumber" : "14"
+                "boothNumber" : "14",
+                "id": "18aw0109"
             },
             {
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "eプリントサービスLPサイト",
                 "members" : [{"id" : "18aw0105", "name" : "及川 舜平"}],
-                "boothNumber" : "15"
+                "boothNumber" : "15",
+                "id": "18aw0105"
             },
             {
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "カフェ「ジーニーマジック」サイト",
                 "members" : [{"id" : "18aw0120", "name" : "成瀬 奈美恵"}],
-                "boothNumber" : "16"
+                "boothNumber" : "16",
+                "id": "18aw0120"
             },
             {
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "授業自己評価システム",
                 "members" : [{"id" : "18aw0107", "name" : "小原 怜"}],
-                "boothNumber" : "17"
+                "boothNumber" : "17",
+                "id": "18aw0107"
             },
             {
                 "groupName" : "卒業制作_Unityゲーム",
@@ -307,13 +322,15 @@
                     {"id" : "18aw0114", "name" : "真田 拓実"},
                     {"id" : "18aw0130", "name" : "橋本 輝瑠"}
                 ],
-                "boothNumber" : "18"
+                "boothNumber" : "18",
+                "id": "18aw0114"
             },
             {
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "放課後らいぶ",
                 "members" : [{"id" : "18aw0110", "name" : "菊地 聖治" }],
-                "boothNumber" : "19"
+                "boothNumber" : "19",
+                "id": "18aw0110"
             },
             {
                 "groupName" : "卒業制作_おもてなしデザイン",
@@ -323,13 +340,14 @@
                     {"id" : "18aw0129", "name" : "小潟 大賀"}
                 ],
                 "boothNumber" : "20",
-                "id": "18aw0101"
+                "id": "18aw0103"
             },
             {
                 "groupName" : "卒業制作_個人",
                 "workTitle" : "会場デザイン",
                 "members" : [{"id" : "18aw0127", "name" : "渡辺 美有"}],
-                "boothNumber" : "21"
+                "boothNumber" : "21",
+                "id": "18aw0127"
             }
         ]
     },
