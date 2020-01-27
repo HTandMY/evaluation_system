@@ -1,7 +1,10 @@
 {
     "groups": {
         "grade_1" : {
-            "スターホーム" :[
+            "スターホーム" : {
+                "title_small" : "葉山ハウスメーカー「スターホーム」の" ,
+                "title_big" : "完全定額制住宅「Haco」ランディングページ or キャンペーンサイト",
+                "student_list" : [
                 {
                     "id" : "19aw0119" , 
                     "name" : "八戸 知里",
@@ -32,8 +35,12 @@
                     "boothNumber" : "27",
                     "workTitle" : "完成定額制住宅「haco」の特設サイト"
                 }
-            ],
-            "Gravis" :[
+            ]},
+            "Gravis" : {
+                "title_small" : "チア・キッズチアダンススクール" ,
+                "title_big" : "グラヴィスランディングページ",
+                "student_list" : 
+                [ 
                 {
                     "id" : "19aw0131" , 
                     "name" : "宮下 颯斗",
@@ -70,8 +77,12 @@
                     "boothNumber" : "33",
                     "workTitle" : "Gravisランディングページ"
                 }
-            ],
-            "SAGOJO" :[
+            ]},
+            "SAGOJO" : {
+                "title_small" : "すごい旅人求人サイト" ,
+                "title_big" : "「SAGOJO（サゴジョー）」のスペシャルサイト",
+                "student_list" : 
+                [
                 {
                     "id" : "19aw0101" , 
                     "name" : "青山 祐依",
@@ -120,8 +131,12 @@
                     "boothNumber" : "41",
                     "workTitle" : "行きたいところへ"
                 }
-            ],
-            "キッズコレッチオ" :[
+            ]},
+            "キッズコレッチオ" :{
+                "title_small" : "子どもの想い出を、宝物として残すサービス" ,
+                "title_big" : "キッズコレッチオキャンペーンページ",
+                "student_list" : 
+                [
                 {
                     "id" : "19aw0121" , 
                     "name" : "松永 湖暖",
@@ -182,7 +197,7 @@
                     "boothNumber" : "51",
                     "workTitle" : "親と子の物語"
                 }
-            ]
+            ]}
         },
 
         "grade_2" : [

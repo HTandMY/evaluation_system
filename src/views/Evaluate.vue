@@ -6,7 +6,7 @@
                 <p class="grade-item" id="grade-1" v-if="grade == 1">1年 進級制作</p>
                 <p class="grade-item" id="grade-2" v-else>2年 卒業制作</p>
             </div>
-            <div>
+            <div class="info-member-box-outer">
                 <div class="info-member-box">
                     <span v-for="item in students" v-bind:key="item.id" class="info-member-name">{{item.name}}</span>
                 </div>
@@ -137,7 +137,7 @@ export default {
                 this.$refs[projectName][i].style.background = "transparent";
             }
             for(let i = 0 ; i < num ; i++){
-                this.$refs[projectName][i].style.background = "aqua";
+                this.$refs[projectName][i].style.background = "rgba(159 , 223, 243, 0.7)";
             }
             this.evaluat = Object.assign({}, this.evaluat, {
                 [projectName] : num
@@ -226,9 +226,10 @@ export default {
     }
     .content h1 {
         margin: 0;
-        padding: 20px;
+        padding: 20px 0;
         color: #ffffff;
-        text-align: center;
+        text-align: left;
+        font-size: 1.8rem;
     }
     .grade-box{
         margin: 20px 0;
@@ -257,6 +258,9 @@ export default {
     }
     .info-member-box{
         color: #ffffff;
+    }
+    .info-member-box-outer {
+        border-bottom: rgba(255, 255, 255, 0.6) 2px solid;
     }
     .info-member-name {
         text-align: center;
@@ -337,7 +341,7 @@ export default {
         height: 30px;
         width: auto;
         box-sizing: border-box;
-        border: 1px solid #ffffff;
+        border: 2px solid #CAF2FF;
         border-radius: 5px;
         transform: skewX(-20deg);
         transition: all 0.3s;

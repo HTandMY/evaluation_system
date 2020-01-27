@@ -4,9 +4,12 @@
         <div class="grid-container">
             <ul class="project-header-container">
                 <li class="project-header" v-for="(item, key) in studentData.groups.grade_1" v-bind:key="key">
-                    <div>{{key}}</div>
+                    <div class="project-title-box">
+                        <div class="title-small">{{item.title_small}}</div>
+                        <div class="title-big">{{item.title_big}}</div>
+                    </div>
                     <ul class="project-info-container">
-                        <li v-for="item_1 in item" v-bind:key="item_1.id">
+                        <li v-for="item_1 in item.student_list" v-bind:key="item_1.id">
                             <div class="project-info">
                                 <div v-on:click="setStudentData(item_1.id , item_1.name , item_1.boothNumber , 1 , item_1.workTitle)">
                                     <div class="project-info-num" id="project-info-num-1">{{ item_1.boothNumber }}</div>
@@ -56,7 +59,7 @@ export default {
 }
 .project-info-num{
     position: relative;
-    top: -6px;
+    top: -2px;
     font-family: 'KaisoNext';
     display: inline-block;
     width: 20%;
@@ -70,12 +73,26 @@ export default {
     color: #CAF2FF;
     list-style-type: none;
     margin: 0 auto;
-    padding: 0;
+    padding: 0 8px;
 }
 .project-header > div {
-    padding: 10px;
+    padding: 0 8px;
     font-size: 25px;
     font-weight: bold;
+}
+.project-title-box {
+    border-left: solid 8px #CAF2FF80 ;
+    box-sizing: border-box;
+    margin-left: 8px;
+    margin: 36px 0 16px 8px;
+}
+.title-small {
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+.title-big {
+    font-size: 25px;
+    line-height: 2rem;
 }
 .grade-1 .student-info{
     color: rgb(255, 204, 35);
