@@ -7,6 +7,7 @@
                 <p class="grade-item" id="grade-2" v-else>2年 卒業制作</p>
             </div>
             <div class="info-member-box-outer">
+                <div><img  id="title_img" :src="require('@/assets/worktitle_' + evaluat.boothNumber + '.jpg')" alt=""></div>
                 <div class="info-member-box">
                     <span v-for="item in students" v-bind:key="item.id" class="info-member-name">{{item.name}}</span>
                 </div>
@@ -255,6 +256,8 @@ export default {
     }
     #title_img {
         width: 100%;
+        margin-bottom: 10px;
+        border-radius: 8px;
     }
     .info-member-box{
         color: #ffffff;
@@ -264,13 +267,18 @@ export default {
     }
     .info-member-name {
         text-align: center;
-        padding: 0 7px 0 5px;
+        /* padding: 0 5px 0 5px; */
         font-weight: bold;
         font-size: 15px;
-        border-right: 2px solid #fff; 
+        /* border-right: 2px solid #fff;  */
     }
-    .info-member-name:last-child{
-        border-right:none;
+    .info-member-name::after {
+        content: " / ";
+        color: #fff;
+    }
+    .info-member-name:last-child::after{
+        /* border-right:none; */
+        content: "";
     }
     .members{
         transition: all 0.3s;

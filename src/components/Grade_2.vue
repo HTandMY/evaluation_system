@@ -10,7 +10,7 @@
                                 <div class="project-info-num">{{ item.boothNumber }}</div>
                                 <div class="project-info-div">{{ item.workTitle }}</div>
                             </div> 
-                            <div><img class="worksimg" :src="require('@/assets/worktitle_' + item.id + '.jpg')" alt=""></div>
+                            <div><img class="worksimg" :src="require('@/assets/worktitle_' + item.boothNumber + '.jpg')" alt=""></div>
                         </div>
                     </div>
                 </li>

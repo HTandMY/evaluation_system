@@ -14,7 +14,7 @@
                                 <div v-on:click="setStudentData(item_1.id , item_1.name , item_1.boothNumber , 1 , item_1.workTitle)">
                                     <div class="project-info-num" id="project-info-num-1">{{ item_1.boothNumber }}</div>
                                     <div class="project-info-div">{{ item_1.workTitle }}</div>
-                                    <img class="worksimg" :src="require('@/assets/worktitle_' + item_1.id + '.jpg')" alt="">
+                                    <img class="worksimg" :src="require('@/assets/worktitle_' + item_1.boothNumber + '.jpg')" alt="">
                                     <div class="grade-1 student-info" >{{item_1.name}}</div>
                                 </div>
                             </div>
