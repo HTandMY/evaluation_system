@@ -4,7 +4,7 @@
             <img src="@/assets/title_recommend.png" alt="">
         </div>
         <div class="recommend-content">
-            <h2 class="recommend-content-title">あなたを紹介した学生</h2>
+            <h2 class="recommend-content-title">私を紹介した学生</h2>
             <section>
                 <div>
                     <Recommend v-for="item in studentData.students[$store.state.studentData.id]" :key="item.id" :recommend="item"/>
