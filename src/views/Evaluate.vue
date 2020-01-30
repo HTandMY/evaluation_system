@@ -7,7 +7,7 @@
                 <p class="grade-item" id="grade-2" v-else>2年 卒業制作</p>
             </div>
             <div class="info-member-box-outer">
-                <div><img  id="title_img" :src="require('@/assets/worktitle_' + evaluat.boothNumber + '.jpg')" alt=""></div>
+                <div v-if="evaluat.boothNumber"><img id="title_img" :src="require('@/assets/worktitle_' + evaluat.boothNumber + '.jpg')" alt=""></div>
                 <div class="info-member-box">
                     <span v-for="item in students" v-bind:key="item.id" class="info-member-name">{{item.name}}</span>
                 </div>
