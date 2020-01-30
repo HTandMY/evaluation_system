@@ -1,6 +1,5 @@
 <template>
-    <Header>
-    <div id="header-box-out">
+    <header id="header-box-out">
         <div id="logo-box">
             <img src="@/assets/logo.png" alt="">
             <img src="@/assets/logo_title.png" alt="">
@@ -8,8 +7,7 @@
         <div class="button-back-box" @click="$router.go(-1)" v-if="buttonBackShow">
             <img src="@/assets/button_back.png" alt="" srcset="">
         </div>
-    </div>
-    </Header>
+    </header>
 </template>
 
 <script>
