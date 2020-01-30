@@ -5,8 +5,8 @@
         <div style="text-align: center;color: #CAF2FF;text-shadow: #CAF2FF 0px 0px 2px;font-size: 18px;">日本電子専門学校webデザイン科</div>
         <h1>卒業・進級制作展</h1>
       <div style="text-align: center;color: #CAF2FF;text-shadow: #CAF2FF 0px 0px 2px;font-size: 18px;">CONNECT 2019</div>
-      <div><router-link tag="button" to="/visitorsignin" class="button">来場者入り口</router-link></div>
-      <div><router-link tag="button" to="/studentsignin" class="button"><span>ウェブデザイン科</span><br/>学生入口</router-link></div>
+      <div><router-link tag="button" to="/visitorsignin" class="button-home">来場者入り口</router-link></div>
+      <div><router-link tag="button" to="/studentsignin" class="button-home"><span>ウェブデザイン科</span><br/>学生入口</router-link></div>
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
     text-align: center;
     margin-bottom: 40px;
 }
-.button{
+.button-home{
     color: #fff;
     font-family: 'KaisoNext';
     font-size: 22px;
