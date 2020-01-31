@@ -14,7 +14,7 @@ git add -A
 git commit -m 'deploy'
 
 # 提交到项目的 gh-pages 分支
-git push -f git@github.com:HTandMY/evaluation_system.git master:gh-pages
+# git push -f git@github.com:HTandMY/evaluation_system.git master:gh-pages
 git push -f https://github.com/HTandMY/evaluation_system.git master:gh-pages
 
 cd -
