@@ -141,7 +141,7 @@
                     "id" : "19aw0121" , 
                     "name" : "松永 湖暖",
                     "boothNumber" : "42",
-                    "workTitle" : "ほとんど手書きのデザインでサイトを作っているため。"
+                    "workTitle" : "「ありがとう」で繋がる家族の絆"
                 },
                 {
                     "id" : "19aw0102" , 
@@ -203,7 +203,7 @@
         "grade_2" : [
             {
                 "groupName" : "卒業制作_個人",
-                "workTitle" : "武蔵野園サイト",
+                "workTitle" : "釣り堀＆お食事処「武蔵野園」サイト",
                 "members" : [{"id" : "18aw0106", "name" : "大場 吉樹"}],
                 "boothNumber" : "01",
                 "id": "18aw0106"
@@ -217,14 +217,14 @@
             },
             {
                 "groupName" : "卒業制作_個人",
-                "workTitle" : "株式会社Dice　リニューアルサイト",
+                "workTitle" : "株式会社Dice リニューアルサイト",
                 "members" : [{"id" : "18aw0104", "name" : "井原 蒼尉"}],
                 "boothNumber" : "03",
                 "id": "18aw0104"
             },
             {
                 "groupName" : "卒業制作_告知サイト",
-                "workTitle" : "告知サイト",
+                "workTitle" : "卒業・進級制作展CONNECT2019サイト",
                 "members" : [
                     {"id" : "18aw0124", "name" : "楊 詩俞"},
                     {"id" : "18aw0130", "name" : "橋本 輝瑠"}
@@ -234,7 +234,7 @@
             },
             {
                 "groupName" : "卒業制作_評価システム",
-                "workTitle" : "評価システム",
+                "workTitle" : "卒業・進級制作展 学生作品評価システム",
                 "members" : [
                     {"id" : "18aw0108", "name" : "川浪 涼葉" },
                     {"id" : "18aw0125", "name" : "ヤング ジャクリン サウミン"},
@@ -252,7 +252,7 @@
             },
             {
                 "groupName" : "卒業制作_個人",
-                "workTitle" : "よくばり秩父街道",
+                "workTitle" : "秩父観光促進「よくばり秩父街道」サイト",
                 "members" : [{"id" : "18aw0123", "name" : "山中 翔平"}],
                 "boothNumber" : "07",
                 "id": "18aw0123"
@@ -266,7 +266,7 @@
             },
             {
                 "groupName" : "卒業制作_個人",
-                "workTitle" : "トータルデザイン",
+                "workTitle" : "卒業制作展総合デザイン",
                 "members" : [{"id" : "18aw0124", "name" : "楊 詩俞"}],
                 "boothNumber" : "09",
                 "id": "18aw0124"
@@ -294,7 +294,7 @@
             },
             {
                 "groupName" : "卒業制作_教育プログラミング",
-                "workTitle" : "小学4年生向けプログラミング教材「わくわくの旅」",
+                "workTitle" : "学習支援アプリ 「わくわくの旅」",
                 "members" : [
                     {"id" : "18aw0102", "name" : "旭 和佳"},
                     {"id" : "18aw0119", "name" : "ティハ トーン ナイン"}
@@ -304,7 +304,7 @@
             },
             {
                 "groupName" : "卒業制作_個人",
-                "workTitle" : "日本電専門学校　図書室・ライセンスセンターサイト",
+                "workTitle" : "日本電専門学校 図書室・ライセンスセンターLPサイト",
                 "members" : [{"id" : "18aw0109", "name" : "神原 美紗希"}],
                 "boothNumber" : "14",
                 "id": "18aw0109"
@@ -332,7 +332,7 @@
             },
             {
                 "groupName" : "卒業制作_Unityゲーム",
-                "workTitle" : "走れ！SH-マン",
+                "workTitle" : "Unityゲーム「走れ！SHマン」",
                 "members" : [
                     {"id" : "18aw0114", "name" : "真田 拓実"},
                     {"id" : "18aw0130", "name" : "橋本 輝瑠"}
@@ -342,14 +342,14 @@
             },
             {
                 "groupName" : "卒業制作_個人",
-                "workTitle" : "放課後らいぶ",
+                "workTitle" : "音楽ゲーム「放課後らいぶ」",
                 "members" : [{"id" : "18aw0110", "name" : "菊地 聖治" }],
                 "boothNumber" : "19",
                 "id": "18aw0110"
             },
             {
                 "groupName" : "卒業制作_おもてなしデザイン",
-                "workTitle" : "おもてなしデザイン",
+                "workTitle" : "卒業・進級制作展 会場デザイン「Melike」",
                 "members" : [
                     {"id" : "18aw0103", "name" : "安藤 愛菜"},
                     {"id" : "18aw0129", "name" : "小潟 大賀"}
@@ -359,7 +359,7 @@
             },
             {
                 "groupName" : "卒業制作_個人",
-                "workTitle" : "会場デザイン",
+                "workTitle" : "卒業・進級制作展 学生作品評価システム",
                 "members" : [{"id" : "18aw0127", "name" : "渡辺 美有"}],
                 "boothNumber" : "21",
                 "id": "18aw0127"

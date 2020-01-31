@@ -14,7 +14,7 @@
                 <h1>{{workTitle}}</h1>
             </div>
             <div>
-                <h2>作品を評価してください<span class="required">※必須</span></h2>
+                <h2>作品の評価をお願いします。<span class="required">※必須</span></h2>
                 <transition name="slide-fade" mode="out-in">
                     <div class="error-box" v-if="showError">
                         タップして評価してください！
@@ -46,8 +46,8 @@
                         </div>
                     </div>
                 </div>
-                <h2>作品についてコメントがありましたら</h2>
-                <textarea id="comment" maxlength="128" placeholder="テキストが入ります。来場者からのご意見・ご感想が入ります。" v-model="evaluat.comment"></textarea>
+                <h2>なにかご意見・ご感想があればお聞かせください。</h2>
+                <textarea id="comment" maxlength="128" placeholder="ご意見・ご感想は学生たちの励みになります！" v-model="evaluat.comment"></textarea>
             </div>
             <div>
                 <h2>プレゼンされた学生：</h2>
