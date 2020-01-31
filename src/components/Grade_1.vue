@@ -5,7 +5,7 @@
             <ul class="project-header-container">
                 <li class="project-header" v-for="(item, key) in studentData.groups.grade_1" v-bind:key="key">
                     <div class="project-title-box">
-                        <div class="title-small">{{item.title_small}}</div>
+                        
                         <div class="title-big">{{item.title_big}}</div>
                     </div>
                     <ul class="project-info-container">
