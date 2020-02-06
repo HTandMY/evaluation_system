@@ -3,6 +3,7 @@
         <h3 class="point-title">
             {{ worktitle[selectNum].worktitle }}
         </h3>
+        <p class="point-num">プレゼン {{ selectedWorks.length }} 回</p>
         <div class="point-box">
             <div class="point-all-box">
                 <p>総合</p>
@@ -150,6 +151,12 @@ export default {
     text-align: center;
     color: #fff;
     font-family: 'SmartPhoneUI';
+}
+.point-num{
+    text-align: center;
+    margin: 5px 0;
+    color: #fff;
+    font-size: 20px;
 }
 .point-box .point-all-box {
     width: 70%;
